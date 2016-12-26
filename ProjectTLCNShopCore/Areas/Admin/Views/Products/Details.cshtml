@@ -1,0 +1,115 @@
+﻿@model ProjectTLCNShopCore.EF.Products
+
+@{
+
+
+	ViewData["Title"] = "Create";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+	var listimage = Model.Picture.ToString().Split(';');
+}
+
+<!-- start: Content -->
+<div id="content" class="span10">
+	<ul class="breadcrumb">
+		<li>
+			<i class="icon-home"></i>
+			<a href="index.html">Home</a>
+			<i class="icon-angle-right"></i>
+		</li>
+		<li>
+			<i class="icon-edit"></i>
+			<a href="#">Details Product</a>
+		</li>
+	</ul>
+
+	<div class="row-fluid sortable">
+		<div class="box span11">
+			<div class="box-header" data-original-title>
+				<h2><i class="halflings-icon edit"></i><span class="break"></span>Chi tiết Sản Phấm</h2>
+				<div class="box-icon">
+					<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+					<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+					<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+				</div>
+			</div>
+			<div class="box-content">
+				@using (Html.BeginForm("Details", "Products", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+				{
+					<fieldset>
+						<div class="control-group">
+							<label class="control-label" for="typeahead">Tên sản phẩm:</label>
+							<div class="controls">
+								<label >@Model.ProductName</label>
+								<span asp-validation-for="CategoryName" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="control-group hidden-phone">
+							<label  class="control-label" for="typeahead">Loại sản phẩm:</label>
+							<div class="controls">
+								<label class="control-label" for="typeahead">@ViewData["catename"]</label>
+								<span asp-validation-for="CategoryName" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="control-group hidden-phone">
+							<label asp-for="CategoriesName" class="control-label" for="typeahead">Nhà cung cấp: </label>
+							<div class="controls">
+								<label class="control-label" for="typeahead">@ViewData["supplier"]</label>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="typeahead">Giá:</label>
+							<div class="controls">
+								<label class="control-label" for="typeahead">@Model.UnitPrice.GetValueOrDefault().ToString("000,0") ₫</label>
+								<span asp-validation-for="CategoryName" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="typeahead">Số lượng:</label>
+							<div class="controls">
+								<label class="control-label" for="typeahead">@Model.UnitsInStock</label>
+								<span asp-validation-for="UnitsInStock" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="typeahead">Số lượng an toàn:</label>
+							<div class="controls">
+								<label class="control-label" for="typeahead">@Model.ReorderLevel</label>
+								<span asp-validation-for="ReorderLevel" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="typeahead">Giảm giá:</label>
+							<div class="controls">
+								<label class="control-label" for="typeahead">@Model.Discount.GetValueOrDefault().ToString("0") %</label>
+								<span asp-validation-for="Discount" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="control-group hidden-phone">
+							<label asp-for="CategoriesName" class="control-label" for="textarea2">Mô tả:</label>
+							<div class="controls">
+								@Html.TextAreaFor(model => model.Note, htmlAttributes: new { @class = "cleditor", @id = "Note", @rows = "3" })
+							</div>
+						</div>
+						<div class="form-group">
+							<label asp-for="Picture" class="control-label" for="typeahead">Hình ảnh:</label>
+							<div class="controls">
+
+								@*<input type="file" multiple name="files" id="file1" accept="image/gif, image/jpeg, image/png" ischoosed="false" required />*@
+								@foreach (var item in listimage)
+								{
+									<img src="@Url.Content(item)" width="10%" height="10%" />
+
+								}
+								@Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-danger" })
+							</div>
+						</div>
+						<div class="form-actions">
+							@Html.ActionLink("Cancel", "Index", "Products", null, new { @class = "btn btn-danger" })
+						</div>
+					</fieldset>
+				}
+
+			</div>
+		</div><!--/span-->
+	</div>
+</div>

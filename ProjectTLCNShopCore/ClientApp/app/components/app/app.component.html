@@ -1,0 +1,33 @@
+<!--<h1 class="container">{{title}}</h1>
+<h2 class="container">{{hero}}</h2>
+
+<br/>-->
+<!--<table class='table' *ngIf="cate">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Desc</th>
+			<th>Picture</th>
+			<th>Anh</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let item of cate">
+			<td>{{ item.categoryId }}</td>
+			<td>{{item.categoryName }}</td>
+			<td>{{ item.description }}</td>
+			<td>{{ item.picture }}</td>
+			<td><img src="{{ item.picture }}" /></td>
+		</tr>
+	</tbody>
+</table>-->
+<!--<button class="btn btn-danger">Cancel</button>
+<button class="btn btn-danger">Cancel</button>-->
+
+<h1>Welcome to my shop!</h1>
+<p>We've th follwing movies available</p>
+<ul>
+	<li *ngFor="let movie of movieList" (click)="selectedMovie()">{{movie}}</li>
+</ul>
+<button class="btn btn-danger">Cancel</button>
