@@ -52,8 +52,9 @@
     "CoreCompat.System.Drawing": "1.0.0-beta006",
     "Microsoft.AspNetCore.Session": "1.0.0",
     "Microsoft.AspNetCore.Http.Abstractions": "1.1.0",
-    "Microsoft.Extensions.Caching.Memory": "1.1.0"
-  },
+    "Microsoft.Extensions.Caching.Memory": "1.1.0",
+    "Newtonsoft.Json": "9.0.1",
+    "AutoMapper": "5.2.0"  },
 
   "tools": {
     "BundlerMinifier.Core": "2.0.238",

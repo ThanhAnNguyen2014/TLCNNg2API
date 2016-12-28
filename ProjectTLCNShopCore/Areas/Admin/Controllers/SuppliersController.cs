@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ProjectTLCNShopCore.EF;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -23,12 +24,20 @@ namespace ProjectTLCNShopCore.Areas.Admin.Controllers
 		// GET: Suppliers
 		public async Task<IActionResult> Index()
 		{
+			if (HttpContext.Session.GetString("UserID") == null && HttpContext.Session.GetString("Email") == null)
+			{
+				return RedirectToAction("Index", "Login");
+			}
 			return View(await _context.Suppliers.ToListAsync());
 		}
 
 		// GET: Suppliers/Details/5
 		public async Task<IActionResult> Details(int? id)
 		{
+			if (HttpContext.Session.GetString("UserID") == null && HttpContext.Session.GetString("Email") == null)
+			{
+				return RedirectToAction("Index", "Login");
+			}
 			if (id == null)
 			{
 				return NotFound();
@@ -46,6 +55,10 @@ namespace ProjectTLCNShopCore.Areas.Admin.Controllers
 		// GET: Suppliers/Create
 		public IActionResult Create()
 		{
+			if (HttpContext.Session.GetString("UserID") == null && HttpContext.Session.GetString("Email") == null)
+			{
+				return RedirectToAction("Index", "Login");
+			}
 			return View();
 		}
 
@@ -56,6 +69,10 @@ namespace ProjectTLCNShopCore.Areas.Admin.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Create([Bind("SupplierId,Address,City,CompanyName,ContactName,Country,Fax,HomePage,Phone")] Suppliers suppliers)
 		{
+			if (HttpContext.Session.GetString("UserID") == null && HttpContext.Session.GetString("Email") == null)
+			{
+				return RedirectToAction("Index", "Login");
+			}
 			if (ModelState.IsValid)
 			{
 				_context.Add(suppliers);
@@ -69,6 +86,10 @@ namespace ProjectTLCNShopCore.Areas.Admin.Controllers
 		[HttpGet("Admin/Suppliers/Edit/{id}")]
 		public async Task<IActionResult> Edit(int? id)
 		{
+			if (HttpContext.Session.GetString("UserID") == null && HttpContext.Session.GetString("Email") == null)
+			{
+				return RedirectToAction("Index", "Login");
+			}
 			if (id == null)
 			{
 				return NotFound();
@@ -89,6 +110,10 @@ namespace ProjectTLCNShopCore.Areas.Admin.Controllers
 		[HttpPost("Admin/Suppliers/Edit/{id}")]
 		public async Task<IActionResult> Edit(int id, [Bind("SupplierId,Address,City,CompanyName,ContactName,Country,Fax,HomePage,Phone")] Suppliers suppliers)
 		{
+			if (HttpContext.Session.GetString("UserID") == null && HttpContext.Session.GetString("Email") == null)
+			{
+				return RedirectToAction("Index", "Login");
+			}
 			var supp = _context.Suppliers.SingleOrDefault(m => m.SupplierId == id);
 			supp.CompanyName = suppliers.CompanyName;
 			supp.Address = suppliers.Address;
@@ -111,6 +136,10 @@ namespace ProjectTLCNShopCore.Areas.Admin.Controllers
 		[HttpGet("Admin/Suppliers/Delete/{id}")]
 		public async Task<IActionResult> Delete(int? id)
 		{
+			if (HttpContext.Session.GetString("UserID") == null && HttpContext.Session.GetString("Email") == null)
+			{
+				return RedirectToAction("Index", "Login");
+			}
 			if (id == null)
 			{
 				return NotFound();

@@ -13,6 +13,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using ProjectTLCNShopCore.Areas.Admin.Models;
+using Microsoft.AspNetCore.Http;
+using AutoMapper;
+using ProjectTLCNShopCore.Models.ModelView;
 
 namespace ProjectTLCNShopCore
 {
@@ -53,7 +56,7 @@ namespace ProjectTLCNShopCore
 			})
 			.AddEntityFrameworkStores<ProjectShopAPIContext>()
 			.AddDefaultTokenProviders();
-
+			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 			// config Section Areas
 			services.Configure<RazorViewEngineOptions>(options =>
 			{
@@ -63,9 +66,21 @@ namespace ProjectTLCNShopCore
 				options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
 			});
 
-			services.AddMvc();
 			services.AddDistributedMemoryCache();
-			services.AddSession();
+			services.AddSession(options=> {
+				//options.CookieName = ".ProjectTLCNShopCore";
+				options.IdleTimeout = TimeSpan.FromHours(3);
+			});
+			var configautomap = new MapperConfiguration(cfg =>
+			{
+				//cfg.AddProfile(new AutoMapperProfileConfiguration());
+				cfg.CreateMap<Products, ProductModel>();
+				cfg.CreateMap<Categories, CategoriesModel>();
+			});
+			var mapper = configautomap.CreateMapper();
+			services.AddSingleton(mapper);
+			services.AddMvc();
+			
 
 
 			// Add application services.

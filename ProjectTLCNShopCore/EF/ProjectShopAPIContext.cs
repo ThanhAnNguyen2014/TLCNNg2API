@@ -12,6 +12,7 @@ namespace ProjectTLCNShopCore.EF
 
 		}
 
+
 		public virtual DbSet<Admin> Admin { get; set; }
         public virtual DbSet<AdmininstrativeUnit> AdmininstrativeUnit { get; set; }
         public virtual DbSet<Attendance> Attendance { get; set; }

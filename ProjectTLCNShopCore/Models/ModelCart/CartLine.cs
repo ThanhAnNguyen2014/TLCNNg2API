@@ -11,5 +11,9 @@ namespace ProjectTLCNShopCore.Models.ModelCart
 		public int CartLineID { get; set; }
 		public Products Product { get; set; }
 		public int Quantity { get; set; }
+		//public int ProductId { get; set; }
+		//public int Quantity { get; set; }
+
+
 	}
 }

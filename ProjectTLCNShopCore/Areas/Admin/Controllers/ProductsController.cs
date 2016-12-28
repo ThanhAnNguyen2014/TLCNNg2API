@@ -29,6 +29,10 @@ namespace ProjectTLCNShopCore.Areas.Admin.Controllers
 		// GET: Products
 		public async Task<IActionResult> Index()
 		{
+			if (HttpContext.Session.GetString("UserID") == null && HttpContext.Session.GetString("Email") == null)
+			{
+				return RedirectToAction("Index", "Login");
+			}
 			//var model = _context.Products.Include(p => p.Category).Include(p => p.Supplier);
 			return View(await _context.Products.Include(p => p.Category).Include(p => p.Supplier).ToListAsync());
 		}
@@ -39,6 +43,11 @@ namespace ProjectTLCNShopCore.Areas.Admin.Controllers
 		[HttpGet("Admin/Products/Details/{id}")]
 		public async Task<IActionResult> Details(int? id)
 		{
+			if (HttpContext.Session.GetString("UserID") == null && HttpContext.Session.GetString("Email") == null)
+			{
+				return RedirectToAction("Index", "Login");
+			}
+
 			if (id == null)
 			{
 				return NotFound();
@@ -61,6 +70,10 @@ namespace ProjectTLCNShopCore.Areas.Admin.Controllers
 		// GET: Products/Create
 		public IActionResult Create()
 		{
+			if (HttpContext.Session.GetString("UserID") == null && HttpContext.Session.GetString("Email") == null)
+			{
+				return RedirectToAction("Index", "Login");
+			}
 			ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
 			ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "CompanyName");
 
@@ -72,6 +85,10 @@ namespace ProjectTLCNShopCore.Areas.Admin.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Create([Bind("ProductId,AvgRating,CategoryId,Discontinued,Discount,IsDelete,IsNew,Note,Picture,ProductName,ReorderLevel,SupplierId,UnitPrice,UnitsInStock")] Products products, ICollection<IFormFile> files)
 		{
+			if (HttpContext.Session.GetString("UserID") == null && HttpContext.Session.GetString("Email") == null)
+			{
+				return RedirectToAction("Index", "Login");
+			}
 			ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", products.CategoryId);
 			ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "CompanyName", products.SupplierId);
 
@@ -105,6 +122,10 @@ namespace ProjectTLCNShopCore.Areas.Admin.Controllers
 		[HttpGet("Admin/Products/Edit/{id}")]
 		public async Task<IActionResult> Edit(int? id)
 		{
+			if (HttpContext.Session.GetString("UserID") == null && HttpContext.Session.GetString("Email") == null)
+			{
+				return RedirectToAction("Index", "Login");
+			}
 			if (id == null)
 			{
 				return NotFound();
@@ -129,6 +150,10 @@ namespace ProjectTLCNShopCore.Areas.Admin.Controllers
 			[Bind("ProductId,AvgRating,CategoryId,Discontinued,Discount,IsDelete,IsNew,Note,Picture,ProductName,ReorderLevel,SupplierId,UnitPrice,UnitsInStock")] Products products,
 			ICollection<IFormFile> files)
 		{
+			if (HttpContext.Session.GetString("UserID") == null && HttpContext.Session.GetString("Email") == null)
+			{
+				return RedirectToAction("Index", "Login");
+			}
 
 			string tempImageURL = "";
 			var product = _context.Products.SingleOrDefault(m => m.ProductId == id);
@@ -188,6 +213,10 @@ namespace ProjectTLCNShopCore.Areas.Admin.Controllers
 		[HttpGet("Admin/Products/Delete/{id}")]
 		public async Task<IActionResult> Delete(int? id)
 		{
+			if (HttpContext.Session.GetString("UserID") == null && HttpContext.Session.GetString("Email") == null)
+			{
+				return RedirectToAction("Index", "Login");
+			}
 			if (id == null)
 			{
 				return NotFound();
@@ -202,6 +231,7 @@ namespace ProjectTLCNShopCore.Areas.Admin.Controllers
 		[HttpPost("Admin/Products/ChangeIsDisplay/{id}")]
 		public JsonResult ChangeIsDisplay(long id)
 		{
+
 			var result = new ProductDao(_context).ChangeStatus(id);
 			return Json(new
 			{

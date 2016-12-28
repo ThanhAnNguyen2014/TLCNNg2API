@@ -1,1 +1,14 @@
-﻿<h1>Hello {{name}}</h1>
+﻿<div class="container">
+	<h1>Welcom to my shop!</h1>
+	<p> We've the follwing movies available:</p>
+
+	<ul>
+		<li *ngFor="let movie of movieList" (click)="selectMovie(movie)">{{movie}}</li>
+	</ul>
+	Rencently add movie: {{recentlMovie}} <br />
+	Cart:
+	<ul>
+		<li *ngFor="let item of cart">{{item}}</li>
+	</ul>
+</div>
+<button class="btn btn-success">ThanhAn</button>
