@@ -1,4 +1,5 @@
 ﻿using ProjectTLCNShopCore.EF;
+using ProjectTLCNShopCore.Models.ModelView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +13,7 @@ namespace ProjectTLCNShopCore.Models.ModelCart
 		
 		public int CartId { get; set; }		
 		public int Quantity { get; set; }
-		public Products Product { get; set; }
+		public ProductModel Product { get; set; }
 
 
 	}

@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Http;
 using ProjectTLCNShopCore.Infrastructure;
 using Microsoft.AspNetCore.Session;
 using Newtonsoft.Json;
+using AutoMapper;
+using ProjectTLCNShopCore.Models.ModelView;
 
 namespace ProjectTLCNShopCore.Controllers
 {
@@ -17,22 +19,24 @@ namespace ProjectTLCNShopCore.Controllers
 	public class CartController : Controller
     {
 		ProjectShopAPIContext _context;
-
-		List<Products> Productsrepo = new List<Products>();
-		public CartController(ProjectShopAPIContext context)
+		private readonly IMapper _mapper;
+		//List<Products> Productsrepo = new List<Products>();
+		public CartController(ProjectShopAPIContext context, IMapper mapper)
 		{
 			_context = context;
+			_mapper = mapper;
 			
 
 		}
-		[HttpPost("addtocart/{id}")]
-		public RedirectToActionResult AddToCart(int productId)
+		[HttpGet("addtocart/{id}")]
+		public RedirectToActionResult AddToCart(int id)
 		{
-			Products product = Productsrepo.FirstOrDefault(p => p.ProductId == productId);
+			Products product = _context.Products.FirstOrDefault(p => p.ProductId == id);
+			ProductModel productModel= _mapper.Map<ProductModel>(product);
 			if (product != null)
 			{
 				Cart cart = GetCart();
-				cart.AddItem(product, 1);
+				cart.AddItem(productModel, 1);
 				SaveCart(cart);
 			}
 			return RedirectToAction("Index");
@@ -48,10 +52,8 @@ namespace ProjectTLCNShopCore.Controllers
 		}
 		[HttpGet("getCart")]
 		public IActionResult Index()
-		{
-			return new JsonResult(new {
-				Cart = GetCart()
-			});
+		{			
+			return new JsonResult(new {Cart=GetCart() });
 		}
 		
 		

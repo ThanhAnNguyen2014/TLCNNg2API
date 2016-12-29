@@ -76,6 +76,7 @@ namespace ProjectTLCNShopCore
 				//cfg.AddProfile(new AutoMapperProfileConfiguration());
 				cfg.CreateMap<Products, ProductModel>();
 				cfg.CreateMap<Categories, CategoriesModel>();
+				
 			});
 			var mapper = configautomap.CreateMapper();
 			services.AddSingleton(mapper);
