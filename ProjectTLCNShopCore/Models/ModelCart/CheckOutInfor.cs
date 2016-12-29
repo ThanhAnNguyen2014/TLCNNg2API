@@ -14,7 +14,7 @@ namespace ProjectTLCNShopCore.Models.ModelCart
 		public Customers newCustomer { set; get; }
 		public bool IsNewCustomer { get; set; }
 		public Orders order { get; set; }
-		public List<CartFull> products { get; set; }
+		public List<Cart> products { get; set; }
 		public ProjectTLCNShopCore.Models.ModelUser.AddressModel addressModel { get; set; }
 		public int LPoint { get; set; }
 		public CheckOutInfor()
@@ -23,7 +23,7 @@ namespace ProjectTLCNShopCore.Models.ModelCart
 			LPoint = 0;
 		}
 
-		public CheckOutInfor(IEnumerable<Customers> cus, Orders order, List<CartFull> products)
+		public CheckOutInfor(IEnumerable<Customers> cus, Orders order, List<Cart> products)
 		{
 			IsLogged = false;
 			customers = cus;

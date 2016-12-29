@@ -7,16 +7,23 @@ import { Http } from '@angular/http'
 })
 export class AppComponent {
     public recentlMovie = "None";
-    public cart = [];
+    public cate: Cate[];
     public movieList = ['Cấu trúc dữ liệu', 'Điện Toán Đám Mây', 'Thương mại điện tử', 'Hướng đối tượng'];
-    selectMovie(movie) {
-        this.recentlMovie = movie;
-        this.cart.push(movie);
-        alert(movie+ ' was added to Cart');
-    };
-    //constructor(http: Http) {
-    //    http.post('/Cart/'){}
-
-    //}
-    
+    //selectMovie(movie) {
+    //    this.recentlMovie = movie;
+    //    this.cart.push(movie);
+    //    alert(movie+ ' was added to Cart');
+    //};
+    constructor(http: Http) {
+        http.get('/api/api/').subscribe(result => {
+            this.cate = result.json();
+        });
+    }
+ 
 };
+interface Cate {
+    categoryId: number;
+    categoryName: string;
+    description: string;
+    picture: string;
+}
