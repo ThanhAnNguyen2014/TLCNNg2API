@@ -1,13 +1,13 @@
-﻿<div class="container">
-	<h1>Welcom to my shop!</h1>
-	<p> We've the follwing movies available:</p>
+﻿<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">Auth0 - Angular 2</a>
+			<button class="btn btn-primary btn-margin" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
+			<button class="btn btn-primary btn-margin" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
+		</div>
+	</div>
+</nav>
 
-	<ul>
-		<li  *ngFor="let item of cate" >{{item.categoryName}}
-		<br/>
-			<img src="{{item.picture}}" />
-		</li>
-		
-	</ul>
-
-</div>
+<main class="container">
+	<router-outlet></router-outlet>
+</main>

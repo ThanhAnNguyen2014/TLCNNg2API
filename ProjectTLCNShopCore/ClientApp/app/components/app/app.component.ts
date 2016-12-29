@@ -1,24 +1,21 @@
 ﻿import { Component } from '@angular/core';
 import { Http } from '@angular/http'
+import { Auth } from '../service/auth.service';
+
 @Component({
     selector: 'my-app',
+    providers: [Auth],
     template: require('./app.component.html'),
-    styles: [require('./app.component.css')]
+    //styles: [require('./app.component.css')]
 })
 export class AppComponent {
-    public recentlMovie = "None";
-    public cate: Cate[];
-    public movieList = ['Cấu trúc dữ liệu', 'Điện Toán Đám Mây', 'Thương mại điện tử', 'Hướng đối tượng'];
-    //selectMovie(movie) {
-    //    this.recentlMovie = movie;
-    //    this.cart.push(movie);
-    //    alert(movie+ ' was added to Cart');
-    //};
-    constructor(http: Http) {
-        http.get('/api/api/').subscribe(result => {
-            this.cate = result.json();
-        });
-    }
+    constructor(private auth: Auth) { }
+    
+    //constructor(http: Http) {
+    //    http.get('/api/api/').subscribe(result => {
+    //        this.cate = result.json();
+    //    });
+    //}
  
 };
 interface Cate {
