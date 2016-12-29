@@ -27,8 +27,30 @@ namespace ProjectTLCNShopCore.Models.ModelCart
 				line.Quantity += quantity;
 			}
 		}
+		// remove item with quantity
+		public virtual void RemoveItem(ProductModel product)
+		{
+			CartItem line = lineColletion.Where(p => p.Product.ProductID == product.ProductID).FirstOrDefault();
+			if (line == null)
+			{
+				// san pham khong co trong gio hang
+				return;
+			}
+			else
+			{
+				if (line.Quantity == 1)
+				{
+					RemoveLine(product);
+				}
+				else
+				{
+					line.Quantity = line.Quantity - 1;
+				}
+				
+			}
+		}
 		// remove a line item in cart
-		public virtual void RemoveLine(Products product) => lineColletion.RemoveAll(l => l.Product.ProductID == product.ProductId);
+		public virtual void RemoveLine(ProductModel product) => lineColletion.RemoveAll(l => l.Product.ProductID == product.ProductID);
 		// caculated Sum value Price
 		public virtual Nullable<decimal> ComputeTotalValue() => lineColletion.Sum(e => e.Product.UnitPrice * e.Quantity);
 		public virtual void Clear() => lineColletion.Clear();

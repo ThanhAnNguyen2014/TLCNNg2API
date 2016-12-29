@@ -16,6 +16,8 @@ using ProjectTLCNShopCore.Areas.Admin.Models;
 using Microsoft.AspNetCore.Http;
 using AutoMapper;
 using ProjectTLCNShopCore.Models.ModelView;
+using ProjectTLCNShopCore.Models.ModelCart;
+using ProjectTLCNShopCore.Session;
 
 namespace ProjectTLCNShopCore
 {
@@ -80,6 +82,8 @@ namespace ProjectTLCNShopCore
 			});
 			var mapper = configautomap.CreateMapper();
 			services.AddSingleton(mapper);
+			services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 			services.AddMvc();
 			
 

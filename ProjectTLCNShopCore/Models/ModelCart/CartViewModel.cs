@@ -8,5 +8,7 @@ namespace ProjectTLCNShopCore.Models.ModelCart
     public class CartViewModel
     {
 		public Cart Cart { get; set; }
-    }
+		public string TotalPrice { get; set; }
+
+	}
 }
