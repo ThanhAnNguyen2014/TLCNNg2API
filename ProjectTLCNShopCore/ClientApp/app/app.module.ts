@@ -7,13 +7,15 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { UniversalModule } from 'angular2-universal';
 import { AppComponent } from './components/app/app.component';
 import { HomeComponent } from './components/home/home.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 
 @NgModule({
     bootstrap: [ AppComponent],
     declarations: [
         AppComponent,
-        HomeComponent
+        HomeComponent,
+        ContactComponent
         
     ],
     providers: [

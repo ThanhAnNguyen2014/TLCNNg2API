@@ -2,11 +2,13 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from '../home/home.component';
+import { ContactComponent } from '../contact/contact.component';
 
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
-    { path: '**', redirectTo: '' }
+    { path: 'contact', component: ContactComponent },
+    { path: '**', redirectTo: 'home' }
 ];
 
 export const appRoutingProviders: any[] = [
