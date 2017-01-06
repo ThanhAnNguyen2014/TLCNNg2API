@@ -1,0 +1,34 @@
+﻿.banner1{
+	background:url(/images/10.jpg) no-repeat 0px -90px;
+	background-size:cover;
+	min-height:400px;
+	padding:7em 0 2em;
+	text-align:center;
+}
+.banner1 h3{
+	font-size:2.5em;
+	color:#fff;
+	margin-bottom: .5em;
+}
+.banner1 ul li{
+	display:inline-block;
+	text-transform:uppercase;
+	color:#fff;
+}
+.banner1 ul li a{
+	color:#FF008F;
+	text-decoration:none;
+}
+.banner1 ul li a:hover{
+	color:#fff;
+}
+.banner1 ul li i{
+	padding:0 2em;
+}
+ul.w3_short {
+    padding: 4em 0 0;
+}
+
+.about{
+    margin-bottom:10px;
+}

@@ -3,7 +3,8 @@ import { Auth } from '../service/auth.service';
 
 @Component({
     selector: 'contact',
-    template: require('./contact.component.html')
+    template: require('./contact.component.html'),
+    styles: [require('./contact.component.css')]
 })
 
 export class ContactComponent {

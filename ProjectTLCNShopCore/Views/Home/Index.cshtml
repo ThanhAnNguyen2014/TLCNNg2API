@@ -1,10 +1,23 @@
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Electronics Shop";
 }
 
 @*<app asp-prerender-module="ClientApp/dist/main-server">Loading...</app>*@
 
-<my-app>Loading...</my-app>
+<my-app><!-- load page-->
+<div class="preloader">
+    <div class="sk-spinner sk-spinner-wave">
+        <div class="sk-rect1"></div>
+        <div class="sk-rect2"></div>
+        <div class="sk-rect3"></div>
+        <div class="sk-rect4"></div>
+        <div class="sk-rect5"></div>
+    </div>
+</div>
+
+
+
+<!--end load page--></my-app>
 
 <script src="~/dist/vendor.js" asp-append-version="true"></script>
 <script src="https://cdn.auth0.com/js/lock/10.6/lock.min.js"></script>

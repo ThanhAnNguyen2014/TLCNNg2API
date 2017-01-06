@@ -7,3 +7,17 @@
 h1{
 	text-align:center;
 }
+
+.navbar-nav > li > a {
+    margin-top: 5px;
+}
+
+.navbar-nav > li > a  img{
+   height: 20px;
+   width: 20px;
+   border-radius: 12px;
+}
+.container{
+    margin-top: 50px;
+    margin-left:0px;
+}

@@ -4,13 +4,17 @@ import { Auth } from '../service/auth.service';
 
 @Component({
     selector: 'my-app',
-    providers: [Auth],
     template: require('./app.component.html'),
-    //styles: [require('./app.component.css')]
+    styles: [require('./app.component.css')]
 })
 export class AppComponent {
-    constructor(private auth: Auth) { }
-    
+    //profile: any;
+    constructor(private auth: Auth) {
+        //this.profile = JSON.parse(localStorage.getItem('profile'));
+    }
+    //constructor(private auth: Auth) { }
+        
+       
     //constructor(http: Http) {
     //    http.get('/api/api/').subscribe(result => {
     //        this.cate = result.json();
