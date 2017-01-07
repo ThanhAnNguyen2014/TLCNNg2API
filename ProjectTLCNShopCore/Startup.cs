@@ -44,14 +44,15 @@ namespace ProjectTLCNShopCore
 
 			//services.AddDbContext<ApplicationDbContext>(options =>
 			//    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+			//Server =.; Database = MyProjectDatabase; Trusted_Connection = True;
 			var connection = @"Server=.;Database=ProjectShopAPI;Trusted_Connection=True;";
 			services.AddDbContext<ProjectShopAPIContext>(options => options.UseSqlServer(connection));
 
 			services.AddApplicationInsightsTelemetry(Configuration);
 
 			// Add Identity Services & Stores
-			services.AddIdentity<UserLogin, IdentityRole>(config => {
+			services.AddIdentity<UserLogin, IdentityRole>(config =>
+			{
 				config.User.RequireUniqueEmail = true;
 				config.Password.RequireNonAlphanumeric = false;
 				config.Cookies.ApplicationCookie.AutomaticChallenge = false;

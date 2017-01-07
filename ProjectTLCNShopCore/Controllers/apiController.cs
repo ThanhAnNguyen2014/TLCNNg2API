@@ -7,13 +7,14 @@ using ProjectTLCNShopCore.EF;
 using Microsoft.AspNetCore.Http;
 using ProjectTLCNShopCore.Models.ModelView;
 using AutoMapper;
+using ProjectTLCNShopCore.Models.ModelCart;
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ProjectTLCNShopCore.Controllers
 {
-    [Route("api/[controller]")]
-    public class apiController : Controller
-    {
+	[Route("api/[controller]")]
+	public class apiController : Controller
+	{
 		//// GET: api/values
 		//[HttpGet]
 		//public IEnumerable<string> Get()
@@ -60,9 +61,9 @@ namespace ProjectTLCNShopCore.Controllers
 			List<Categories> categorie = _context.Categories.Where(x => x.IsDisplay == true && x.DisplayOrder > 0).ToList();
 			if (categorie.Count == 0)
 			{
-				return NotFound( new { Message = "Not Found Product!" });
+				return NotFound(new { Message = "Not Found Product!" });
 			}
-			return new JsonResult(_mapper.Map<List<CategoriesModel>> (categorie));
+			return new JsonResult(_mapper.Map<List<CategoriesModel>>(categorie));
 		}
 
 		// nhận các sản phẩn nằm trong một loại sản phẩm
@@ -71,11 +72,12 @@ namespace ProjectTLCNShopCore.Controllers
 		{
 			//List<ProductModel> product = new List<ProductModel>();
 			List<Products> item = _context.Products.Where(x => x.CategoryId == id).ToList();
-			if(item.Count==0)
+			if (item.Count == 0)
 			{
 				return NotFound(new { Message = "Not Found Product!" });
 			}
 			return new JsonResult(_mapper.Map<List<ProductModel>>(item));
 		}
+		
 	}
 }

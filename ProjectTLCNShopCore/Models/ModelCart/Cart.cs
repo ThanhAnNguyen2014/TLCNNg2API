@@ -19,12 +19,14 @@ namespace ProjectTLCNShopCore.Models.ModelCart
 				lineColletion.Add(new CartItem
 				{
 					Product = product,
-					Quantity = quantity
+					Quantity = quantity,
+					Price = product.UnitPrice.ToString("000,0") + " VNĐ"
 				});
 			}
 			else
 			{
 				line.Quantity += quantity;
+				line.Price = (line.Quantity * line.Product.UnitPrice).ToString("000,0")+" VNĐ";
 			}
 		}
 		// remove item with quantity
@@ -45,6 +47,7 @@ namespace ProjectTLCNShopCore.Models.ModelCart
 				else
 				{
 					line.Quantity = line.Quantity - 1;
+					line.Price = (line.Quantity * line.Product.UnitPrice).ToString("000,0") + " VNĐ";
 				}
 				
 			}
@@ -52,7 +55,7 @@ namespace ProjectTLCNShopCore.Models.ModelCart
 		// remove a line item in cart
 		public virtual void RemoveLine(ProductModel product) => lineColletion.RemoveAll(l => l.Product.ProductID == product.ProductID);
 		// caculated Sum value Price
-		public virtual Nullable<decimal> ComputeTotalValue() => lineColletion.Sum(e => e.Product.UnitPrice * e.Quantity);
+		public virtual string ComputeTotalValue() => lineColletion.Sum(e => e.Product.UnitPrice * e.Quantity).ToString("000,0")+ " VNĐ";
 		public virtual void Clear() => lineColletion.Clear();
 		public virtual IEnumerable<CartItem> Lines => lineColletion;
 	

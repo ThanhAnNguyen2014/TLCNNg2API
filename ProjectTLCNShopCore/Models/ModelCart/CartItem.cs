@@ -13,6 +13,7 @@ namespace ProjectTLCNShopCore.Models.ModelCart
 		
 		public int CartId { get; set; }		
 		public int Quantity { get; set; }
+		public string Price { get; set; }
 		public ProductModel Product { get; set; }
 
 

@@ -10,5 +10,13 @@ namespace ProjectTLCNShopCore.Models.ModelCart
 		public Cart Cart { get; set; }
 		public string TotalPrice { get; set; }
 
+		//public CartViewModel(Cart Cart, string total) {
+		//	this.Cart = Cart;
+		//	this.TotalPrice = total;
+		//}
+		public CartViewModel()
+		{
+
+		}
 	}
 }

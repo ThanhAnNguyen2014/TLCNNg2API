@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectTLCNShopCore.EF
 {
@@ -109,7 +110,7 @@ namespace ProjectTLCNShopCore.EF
 
                 entity.Property(e => e.CustomerId)
                     .HasColumnName("CustomerID")
-                    .ValueGeneratedNever();
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.AddressId)
                     .HasColumnName("AddressID")
@@ -134,7 +135,7 @@ namespace ProjectTLCNShopCore.EF
 
             modelBuilder.Entity<HelpPages>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Title).HasMaxLength(50);
             });
@@ -170,9 +171,9 @@ namespace ProjectTLCNShopCore.EF
                 entity.HasKey(e => e.OrderId)
                     .HasName("PK_Orders");
 
-                entity.Property(e => e.OrderId)
-                    .HasColumnName("OrderID")
-                    .ValueGeneratedNever();
+				entity.Property(e => e.OrderId)
+					.HasColumnName("OrderID")
+					.ValueGeneratedOnAdd();
 
                 entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
 
