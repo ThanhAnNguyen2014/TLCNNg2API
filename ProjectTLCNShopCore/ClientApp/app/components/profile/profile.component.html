@@ -1,0 +1,62 @@
+﻿<header></header>
+
+<!-- banner1 -->
+<div class="banner1">
+    <div class="container">
+        <h3>Profile</h3>
+        <ul>
+            <li><a routerLink="/">Home</a><i>/</i></li>
+            <li>Infomation's Me</li>
+        </ul>
+    </div>
+</div>
+<!-- //banner1 -->
+<!--<h1>{{profile.nickname}}</h1>-->
+<!-- profile -->
+    <div class="row" *ngIf="auth.authenticated()">
+        <div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
+            <div class="well profile">
+                <div class="col-sm-12">
+                    <div class="col-xs-12 col-sm-8">
+                        <h2>{{profile.nickname}}</h2>
+                        <p><strong>Email: </strong>{{profile.email}} </p>
+                        <p><strong>Created at:  </strong> {{profile.created_at}} </p>
+                        <p>
+                            <strong>Gender: </strong> {{profile.gender}}
+                        </p>
+                        <p>
+                            <strong>Locale: </strong> {{profile.locale}}
+                        </p>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 text-center">
+                        <figure>
+                            <img src="{{profile.picture}}" alt="" class="img-circle img-responsive">
+                            <figcaption class="ratings">
+                                <p>
+                                    Ratings
+                                    <a href="#">
+                                        <span class="fa fa-star"></span>
+                                    </a>
+                                    <a href="#">
+                                        <span class="fa fa-star"></span>
+                                    </a>
+                                    <a href="#">
+                                        <span class="fa fa-star"></span>
+                                    </a>
+                                    <a href="#">
+                                        <span class="fa fa-star"></span>
+                                    </a>
+                                    <a href="#">
+                                        <span class="fa fa-star-o"></span>
+                                    </a>
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+        </div>
+        <!--//profile-->
+<footer></footer>

@@ -1,0 +1,47 @@
+﻿<!-- _header/header.component.html -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button"
+                    class="navbar-toggle collapsed"
+                    (click)="toggleState()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a routerLink="/" class="navbar-brand"><span class="glyphicon glyphicon-cog"></span>  Electronic Shop</a>
+        </div>
+        <div class="collapse navbar-collapse"
+             [ngClass]="{ 'in': isIn }">
+            <ul class="nav navbar-nav">
+                <li><a routerLink="/">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Category  <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a routerLink="/category">electronics</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+                <li><a routerLink="/contact">Contact</a></li>
+                <li><a routerLink="/about">About</a></li>
+                
+            </ul>
+
+           
+            
+            <ul class="nav navbar-nav navbar-right">
+                <li><a routerLink="/cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                <li><a routerLink="/profile" *ngIf="auth.authenticated()">Profile</a></li>
+                <li><a (click)="auth.login()" *ngIf="!auth.authenticated()">Login</a></li>
+                <li><a  (click)="auth.logout()" *ngIf="auth.authenticated()" routerLink="">Logout</a></li>
+
+            </ul>
+        </div>
+    </div>
+</nav>

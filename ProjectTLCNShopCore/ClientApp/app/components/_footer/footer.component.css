@@ -1,0 +1,13 @@
+﻿.foot {
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-top:0px;
+  background-color: #772953;
+  height: 50px;
+  text-align: center;
+}
+p{
+    padding-top: 10px;
+    color:white;
+}
