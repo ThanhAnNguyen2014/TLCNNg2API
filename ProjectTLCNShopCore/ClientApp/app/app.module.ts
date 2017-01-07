@@ -1,40 +1,53 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AUTH_PROVIDERS } from 'angular2-jwt';
-import { FormsModule } from "@angular/forms";
-//import { routing, appRoutingProviders } from './components/routes/app.routes';
-import "rxjs/Rx";
+import { routing, appRoutingProviders } from './components/routes/app.routes';
+import { AuthGuard } from './components/guard/auth.guard';
+import { Auth } from './components/service/auth.service';
 
 import { HttpModule, JsonpModule } from '@angular/http';
 import { UniversalModule } from 'angular2-universal';
 import { AppComponent } from './components/app/app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { BannerComponent } from './components/banner/banner.component';
-import { SliderComponent } from './components/slider/slider.component';
-//import { ContactComponent } from './components/contact/contact.component';
-//import { CheckOutService } from './components/service/checkout.service';
+import { HomeComponent } from './components/home/home.component';
+import { HeaderComponent } from './components/_header/header.component';
+import { SlideComponent } from './components/_slide/slide.component';
+import { FooterComponent } from './components/_footer/footer.component';
+
+import { AboutComponent } from './components/about/about.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { CategoryComponent } from './components/category/category.component';
+import { DetailComponent } from './components/detail/detail.component';
+import { CartComponent } from './components/cart/cart.component';
+
 
 @NgModule({
-    bootstrap: [AppComponent, BannerComponent],
+    bootstrap: [AppComponent],
     declarations: [
         AppComponent,
+        HomeComponent,
+        SlideComponent,
         HeaderComponent,
-        BannerComponent,
-        SliderComponent
-        //ContactComponent
-        
+        FooterComponent,
+        ContactComponent,
+        CategoryComponent,
+        CartComponent,
+        DetailComponent,
+        AboutComponent,
+        ProfileComponent
+
     ],
     providers: [
-        //appRoutingProviders,
+        appRoutingProviders,
         AUTH_PROVIDERS,
-        //CheckOutService
+        Auth,
+        AuthGuard
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
         HttpModule,
-        FormsModule,
         JsonpModule,
-       // routing
+        routing
     ]
 })
 export class AppModule {

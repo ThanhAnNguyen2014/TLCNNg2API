@@ -1,38 +1,23 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Electronics Shop";
 }
+@*<app asp-prerender-module="ClientApp/dist/main-server">Loading...</app>*@
+<my-app>
+	<!-- load page-->
+	<div class="preloader">
+		<div class="sk-spinner sk-spinner-wave">
+			<div class="sk-rect1"></div>
+			<div class="sk-rect2"></div>
+			<div class="sk-rect3"></div>
+			<div class="sk-rect4"></div>
+			<div class="sk-rect5"></div>
+		</div>
+	</div>
 
-<my-app>Loading...</my-app>
-
+	<!--end load page-->
+</my-app>
 <script src="~/dist/vendor.js" asp-append-version="true"></script>
-<script src="~/client/js/jquery-2.1.4.min.js"></script>
 <script src="https://cdn.auth0.com/js/lock/10.6/lock.min.js"></script>
-@*<script type="text/javascript" src="~/client/js/jquery-2.1.4.min.js" asp-append-version="true"></script>*@
-
-<!-- for bootstrap working -->
-@*<script type="text/javascript" src="~/client/js/bootstrap-3.1.1.min.js" ></script>*@
-<!-- //for bootstrap working -->
-
-<script src="~/client/js/easyResponsiveTabs.js" type="text/javascript"></script>
-<!-- cart -->
-<script src="~/client/js/simpleCart.min.js" ></script>
-<!-- cart -->
-@*<script type="text/javascript" asp-append-version="true">
-								$(document).ready(function () {
-									$('#horizontalTab').easyResponsiveTabs({
-										type: 'default', //Types: default, vertical, accordion
-										width: 'auto', //auto or any width like 600px
-										fit: true   // 100% fit in a container
-									});
-								});
-
-</script>*@
 @section scripts {
-    <script src="~/dist/main-client.js" asp-append-version="true"></script>
-<script src="~/client/js/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="~/client/js/pignose.layerslider.js"></script>
-<script src="~/client/js/easyResponsiveTabs.js" type="text/javascript"></script>
-<!-- cart -->
-<script src="~/client/js/simpleCart.min.js"></script>
-<!-- cart -->
+	<script src="~/dist/main-client.js" asp-append-version="true"></script>
 }

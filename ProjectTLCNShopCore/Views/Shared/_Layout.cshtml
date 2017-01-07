@@ -1,29 +1,24 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		@*<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />*@
-		<meta name="keywords" content="Smart Shop Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-        <title>@ViewData["Title"] - ProjectTLCNShopCore</title>
-        <base href="/" />
-        @*<link rel="stylesheet" href="~/css/bootstrap.css" asp-append-version="true" media="all" />*@
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - ProjectTLCNShopCore</title>
+	<base href="/" />
+	<link rel="stylesheet" href="~/css/loadingpage.css" asp-append-version="true" />
+	@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />*@
+	<!-- Polyfill(s) for older browsers -->
+	<<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://bootswatch.com/united/bootstrap.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-		<script type="application/x-javascript">
-			addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-				   function hideURLbar(){ window.scrollTo(0,1); } </script>
-		<!-- //for-mobile-apps -->
-		@*<link href="~/client/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />*@
-		<link rel="stylesheet" href="~/client/css/bootstrap.css" media="all" />
-		<!-- pignose css -->
-		<link href="~/client/css/pignose.layerslider.css"  rel="stylesheet" type="text/css" media="all" />
-		<!-- //pignose css -->
-		<link href="~/client/css/style.css" rel="stylesheet" type="text/css" media="all" />
 
-    </head>
-    <body>
-        @RenderBody()
-
-        @RenderSection("scripts", required: false)
-    </body>
+</head>
+<body>
+	@RenderBody()
+	@RenderSection("scripts", required: false)
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
 </html>
