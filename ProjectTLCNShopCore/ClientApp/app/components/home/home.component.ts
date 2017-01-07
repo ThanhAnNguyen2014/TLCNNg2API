@@ -7,5 +7,8 @@ import { Auth } from '../service/auth.service';
 })
 
 export class HomeComponent {
-    constructor(private auth: Auth) { }
+    //profile: any;
+    constructor(private auth: Auth) {
+        //this.profile = JSON.parse(localStorage.getItem('profile'));
+    }
 };

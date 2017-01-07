@@ -4,6 +4,7 @@ import { AUTH_PROVIDERS } from 'angular2-jwt';
 import { routing, appRoutingProviders } from './components/routes/app.routes';
 import { AuthGuard } from './components/guard/auth.guard';
 import { Auth } from './components/service/auth.service';
+import { UserService } from "./components/service/user.service";
 
 import { HttpModule, JsonpModule } from '@angular/http';
 import { UniversalModule } from 'angular2-universal';
@@ -41,7 +42,8 @@ import { CartComponent } from './components/cart/cart.component';
         appRoutingProviders,
         AUTH_PROVIDERS,
         Auth,
-        AuthGuard
+        AuthGuard,
+        UserService
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
