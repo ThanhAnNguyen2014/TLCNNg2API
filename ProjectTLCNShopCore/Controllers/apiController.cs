@@ -7,6 +7,8 @@ using ProjectTLCNShopCore.EF;
 using Microsoft.AspNetCore.Http;
 using ProjectTLCNShopCore.Models.ModelView;
 using AutoMapper;
+using ProjectTLCNShopCore.Models.ModelContact;
+using ProjectTLCNShopCore.DaoDB;
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ProjectTLCNShopCore.Controllers
@@ -14,37 +16,6 @@ namespace ProjectTLCNShopCore.Controllers
 	[Route("api/[controller]")]
 	public class apiController : Controller
 	{
-		//// GET: api/values
-		//[HttpGet]
-		//public IEnumerable<string> Get()
-		//{
-		//    return new string[] { "value1", "value2" };
-		//}
-
-		//// GET api/values/5
-		//[HttpGet("{id}")]
-		//public string Get(int id)
-		//{
-		//    return "value";
-		//}
-
-		//// POST api/values
-		//[HttpPost]
-		//public void Post([FromBody]string value)
-		//{
-		//}
-
-		//// PUT api/values/5
-		//[HttpPut("{id}")]
-		//public void Put(int id, [FromBody]string value)
-		//{
-		//}
-
-		//// DELETE api/values/5
-		//[HttpDelete("{id}")]
-		//public void Delete(int id)
-		//{
-		//}
 		ProjectShopAPIContext _context;
 		private readonly IMapper _mapper;
 		public apiController(ProjectShopAPIContext context, IMapper mapper)
@@ -54,13 +25,13 @@ namespace ProjectTLCNShopCore.Controllers
 
 		}
 		// Nhận tất cả các loại sản phẩm
-		[HttpGet]
+		[HttpGet("getcategory")]
 		public IActionResult Get()
 		{
 			List<Categories> categorie = _context.Categories.Where(x => x.IsDisplay == true && x.DisplayOrder > 0).ToList();
 			if (categorie.Count == 0)
 			{
-				return NotFound(new { Message = "Not Found Product!" });
+				return new JsonResult(new { CategoryId="-9999" });
 			}
 			return new JsonResult(_mapper.Map<List<CategoriesModel>>(categorie));
 		}
@@ -73,9 +44,33 @@ namespace ProjectTLCNShopCore.Controllers
 			List<Products> item = _context.Products.Where(x => x.CategoryId == id).ToList();
 			if (item.Count == 0)
 			{
-				return NotFound(new { Message = "Not Found Product!" });
+				return new JsonResult(new { productID = "-9999" });
 			}
 			return new JsonResult(_mapper.Map<List<ProductModel>>(item));
-		}		
-	}
+		}
+        // nhận thông tin contact
+        [HttpPost("getcontact")]
+		public IActionResult GetContactInfor([FromBody] Contacts contact)
+        {
+			if (contact != null)
+			{
+				_context.Add(contact);
+				_context.SaveChanges();
+				return new JsonResult(new { message = "success!" });
+			}
+            return new JsonResult(new { message = "Error!" });
+        }
+        // lấy thông tin sản phẩm theo Id
+        [HttpGet("product/{id}")]
+        public IActionResult GetProduct(int id)
+        {
+            var pro = new MyDao(_context).GetProduct(id);
+            if (pro != null)
+            {
+                return new JsonResult(_mapper.Map<ProductModel>(pro));
+            }
+            return new JsonResult(new { productID = "-9999" });
+        }
+
+    }
 }

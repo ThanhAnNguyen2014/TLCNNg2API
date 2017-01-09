@@ -68,5 +68,16 @@ namespace ProjectTLCNShopCore.DaoDB
 			var user = _context.Users.Where(x => x.Email == email).FirstOrDefault();
 			return user.UserId;
 		}
+
+        // get product by Id
+        public Products GetProduct(int id)
+        {
+            var pro = _context.Products.Where(x => x.ProductId == id).FirstOrDefault();
+            if (pro!=null)
+            {
+                return pro;
+            }
+            return null;
+        }
 	}
 }

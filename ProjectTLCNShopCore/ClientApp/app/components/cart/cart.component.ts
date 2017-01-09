@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Auth } from '../service/auth.service';
+import { Location } from '@angular/common';
 declare var $: any;
-
 @Component({
     selector: 'cart',
     template: require('./cart.component.html'),
@@ -9,7 +9,7 @@ declare var $: any;
 })
 
 export class CartComponent implements OnInit {
-    constructor(private auth: Auth) { };
+    constructor(private auth: Auth,private location: Location) { };
     ngOnInit(): any {
         // quantity plus
         $('.value-plus').on('click', function () {
@@ -30,6 +30,10 @@ export class CartComponent implements OnInit {
         });	
 
      
+    }
+
+    goBack(): void {
+        this.location.back();
     }
     
 };

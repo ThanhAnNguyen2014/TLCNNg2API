@@ -9,7 +9,6 @@
     </div>
 </div>
 <!-- //banner1 -->
-
 <!--mail-->
 <!-- mail -->
 <div class="mail">
@@ -19,18 +18,20 @@
         <p class="nunc">Mọi thắc mắc, góp ý xin liên hệ với chúng tôi thông qua.</p>
         <div class="agileinfo_mail_grids">
             <div class="col-md-8 agileinfo_mail_grid_right">
-                <form action="#" method="post">
+                <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+                    <div *ngIf="submitted"> Yours Message send  susscess!</div>
+                    <!--//{{diagnostic}}-->
                     <div class="col-md-6 wthree_contact_left_grid">
-                        <input type="text" name="Name" placeholder="Họ và tên" required="">
-                        <input type="email" name="Email" placeholder="Email" required="">
+                        <input type="text" name="name" placeholder="Họ và tên" required="" [(ngModel)]="model.name">
+                        <input type="email" name="email" placeholder="Email" required="required" [(ngModel)]="model.email">
                     </div>
                     <div class="col-md-6 wthree_contact_left_grid">
-                        <input type="text" name="Telephone" placeholder="Số điện thoại" required="">
-                        <input type="text" name="Subject" placeholder="Chủ đề" required="">
+                        <input type="text" name="phone" placeholder="Số điện thoại" required="" [(ngModel)]="model.phone">
+                        <input type="text" name="subject" placeholder="Chủ đề" required="" [(ngModel)]="model.subject">
                     </div>
                     <div class="clearfix"> </div>
-                    <textarea name="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Tin nhắn...</textarea>
-                    <input type="submit" value="Gửi">
+                    <textarea name="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="" [(ngModel)]="model.message">Tin nhắn...</textarea>
+                    <input  type="submit" value="Gửi">
                     <input type="reset" value="Xóa">
                 </form>
             </div>
@@ -45,9 +46,4 @@
         </div>
     </div>
 </div>
-<!--<div class="map">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50996.31320435244!2d-122.06676498187694!3d36.97949802442312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808e441b7c36d549%3A0x52ca104b2ad7f985!2sSanta+Cruz%2C+CA%2C+USA!5e0!3m2!1sen!2sin!4v1469096018666" style="border:0"></iframe>
-</div>-->
-<!-- //mail -->
-
 <footer></footer>

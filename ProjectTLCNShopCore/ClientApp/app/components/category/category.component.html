@@ -17,282 +17,47 @@
         <div class="ele-bottom-grid">
             <h3><span>Latest </span>Collections</h3>
             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
-            <div class="col-md-3 product-men">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="/images/category/ph1.png" alt="" class="pro-image-front">
-                        <img src="/images/category/ph1.png" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a routerLink="/detail" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">New</span>
+            
+            
+            <div *ngIf="pro.productID!=-9999">
+                
 
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a routerLink="/detail">Apple Iphone 6</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$500.99</span>
-                            <del>$700.71</del>
+                <div class="col-md-3 product-men" *ngFor="let pro1 of pro">
+                    <div class="men-pro-item simpleCart_shelfItem">
+                        <div class="men-thumb-item">
+                          
+                          
+                            <img src="{{pro1.picture | explode}}" alt="" class="pro-image-front">
+                            <img src="{{pro1.picture | explode}}" alt="" class="pro-image-back">
+                            <div class="men-cart-pro">
+                                <div class="inner-men-cart-pro">
+                                    <a [routerLink]="['/detail', pro1.productID]" class="link-product-add-cart">Detail</a>
+                                </div>
+                            </div>
+                            <span class="product-new-top">New</span>
+
                         </div>
-                        <a routerLink="/cart" class="item_add single-item hvr-outline-out button2">Add to cart</a>
+                        <div class="item-info-product ">
+                            <h4><a routerLink="/detail">{{pro1.productName}}</a></h4>
+                            <div class="info-product-price">
+                                <span class="item_price">{{pro1.unitPrice}} VNĐ</span>
+                            </div>
+                            <a routerLink="/cart" class="item_add single-item hvr-outline-out button2">Add to cart</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 product-men">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="/images/category/ph3.png" alt="" class="pro-image-front">
-                        <img src="/images/category/ph3.png" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a routerLink="/detail" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">New</span>
 
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a routerLink="/detail">Apple Iphone 6s</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$799.99</span>
-                            <del>$999.71</del>
-                        </div>
-                        <a routerLink="/cart" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                    </div>
+            </div>
+
+
+            <div *ngIf="pro.productID==-9999">
+                <div class="col-md-3 product-men">
+                        <div class="men-thumb-item">
+                          <h4>Không tìm thấy sản phẩm</h4> 
+                            <br />
                 </div>
             </div>
-            <div class="col-md-3 product-men">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="/images/category/ph2.png" alt="" class="pro-image-front">
-                        <img src="/images/category/ph2.png" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a routerLink="/detail" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">New</span>
-
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a routerLink="/detail">Apple Iphone 6</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$180.99</span>
-                            <del>$250.71</del>
-                        </div>
-                        <a routerLink="/cart" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 product-men">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="/images/category/ph4.png" alt="" class="pro-image-front">
-                        <img src="/images/category/ph4.png" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a routerLink="/detail" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">New</span>
-
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a routerLink="/detail">Apple Iphone 6s</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$179.99</span>
-                            <del>$200.71</del>
-                        </div>
-                        <a routerLink="/cart" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 product-men yes-marg">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="/images/category/ep1.png" alt="" class="pro-image-front">
-                        <img src="/images/category/ep1.png" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a routerLink="/detail" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">Combo Pack</span>
-
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a routerLink="/detail">Watches</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$109.99</span>
-                            <del>$150.71</del>
-                        </div>
-                        <a routerLink="/cart" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 product-men yes-marg">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="/images/category/ep2.png" alt="" class="pro-image-front">
-                        <img src="/images/category/ep2.png" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a routerLink="/detail" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">New</span>
-
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a routerLink="/detail">Watches</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$129.99</span>
-                            <del>$150.71</del>
-                        </div>
-                        <a routerLink="/cart" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 product-men yes-marg">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="/images/category/ep3.png" alt="" class="pro-image-front">
-                        <img src="/images/category/ep3.png" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a routerLink="/detail" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">New</span>
-
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a routerLink="/detail">Watches</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$149.99</span>
-                            <del>$180.71</del>
-                        </div>
-                        <a routerLink="/cart" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 product-men yes-marg">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="/images/category/ep4.png" alt="" class="pro-image-front">
-                        <img src="/images/category/ep4.png" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a routerLink="/detail" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">New</span>
-
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a routerLink="/detail">Watches</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$119.99</span>
-                            <del>$150.71</del>
-                        </div>
-                        <a routerLink="/cart" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 product-men yes-marg">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="/images/category/ph1.png" alt="" class="pro-image-front">
-                        <img src="/images/category/ph1.png" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a routerLink="/detail" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">New</span>
-
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a routerLink="/detail">Apple Iphone 6</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$500.99</span>
-                            <del>$700.71</del>
-                        </div>
-                        <a routerLink="/cart" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 product-men yes-marg">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="/images/category/ph3.png" alt="" class="pro-image-front">
-                        <img src="/images/category/ph3.png" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a routerLink="/detail" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">New</span>
-
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a routerLink="/detail">Apple Iphone 6s</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$799.99</span>
-                            <del>$999.71</del>
-                        </div>
-                        <a routerLink="/cart" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 product-men yes-marg">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="/images/category/ep4.png" alt="" class="pro-image-front">
-                        <img src="/images/category/ep4.png" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a routerLink="/detail" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">New</span>
-
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a routerLink="/detail">Watches</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$119.99</span>
-                            <del>$150.71</del>
-                        </div>
-                        <a routerLink="/cart" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 product-men yes-marg">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="/images/category/ep1.png" alt="" class="pro-image-front">
-                        <img src="/images/category/ep1.png" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a routerLink="/detail" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">50% Off</span>
-
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a routerLink="/detail">Watches</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$109.99</span>
-                            <del>$150.71</del>
-                        </div>
-                        <a routerLink="/cart" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                    </div>
-                </div>
-            </div>
+          </div>
             <div class="clearfix"></div>
         </div>
     </div>
