@@ -21,14 +21,6 @@ namespace ProjectTLCNShopCore.Models.ModelCart
 			IsLogged = false;
 			
 		}
-
-		//public CheckOutInfor(IEnumerable<Customers> cus, Orders order, CartViewModel cart)
-		//{
-		//	IsLogged = false;
-		//	customers = cus;
-		//	this.order = order;
-		//	this.Carts = cart;
-		//}
 	}
 }
 

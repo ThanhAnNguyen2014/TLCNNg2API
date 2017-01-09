@@ -35,17 +35,13 @@ export class Auth {
 
     }
     public login() {
-        // Call the show method to display the widget.
-        
+        // Call the show method to display the widget.        
         this.lock.show();
         console.log('Login');
         
     }
 
     public authenticated() {
-        //console.log('authenticated');
-        // Check if there's an unexpired JWT
-        // This searches for an item in localStorage with key == 'id_token'
         return tokenNotExpired();
     }
 
