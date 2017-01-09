@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ProjectTLCNShopCore.DaoDB
 {
-    public class MyDao
-    {
+	public class MyDao
+	{
 		ProjectShopAPIContext _context;
 		public MyDao(ProjectShopAPIContext context)
 		{
@@ -52,6 +52,21 @@ namespace ProjectTLCNShopCore.DaoDB
 			{
 				return false;
 			}
+		}
+		public bool CheckUser(string email)
+		{
+			var user = _context.Users.Where(x => x.Email == email).FirstOrDefault();
+			if (user != null)
+			{
+				return true;
+			}
+			return false;
+		}
+		// get Id user by Email
+		public int GetId(string email)
+		{
+			var user = _context.Users.Where(x => x.Email == email).FirstOrDefault();
+			return user.UserId;
 		}
 	}
 }

@@ -13,7 +13,7 @@ export class UserService {
     constructor(private http: Http) { }
     // private instance variable to hold base url
     // private commentsUrl = 'http://localhost:3000/api/comments';
-    private url = 'http://localhost:2182/api/api/getuser';
+    private url = '/api/Cart/getuser';
 
     // Add a new comment
     postinforuser(body: Object):any {

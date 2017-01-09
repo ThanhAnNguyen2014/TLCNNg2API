@@ -7,8 +7,6 @@ using ProjectTLCNShopCore.EF;
 using Microsoft.AspNetCore.Http;
 using ProjectTLCNShopCore.Models.ModelView;
 using AutoMapper;
-using ProjectTLCNShopCore.Models.ModelCart;
-using ProjectTLCNShopCore.Models.ModelUser;
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ProjectTLCNShopCore.Controllers
@@ -78,36 +76,6 @@ namespace ProjectTLCNShopCore.Controllers
 				return NotFound(new { Message = "Not Found Product!" });
 			}
 			return new JsonResult(_mapper.Map<List<ProductModel>>(item));
-		}
-		
-		// Nhan thong tin nguoi dung
-		[HttpPost("getuser")]
-		public IActionResult GetUser([FromBody] UserInforAuth0 user)
-		{
-			if (user != null)
-			{
-				// kiem tra nguoi dung co phai la thanh vien da dang ky
-				var member = _context.Users.Where(x => x.Email == user.email).FirstOrDefault();
-				if (member != null)
-				{
-					return new JsonResult(new { message = "You are member!" });
-				}
-				Users us = new Users();
-				us.Email = user.email;
-				us.FirstName = user.name;
-				us.AvatarPicture = user.picture;
-				us.IsActive = true;
-				us.Lpoint = 0;
-				if (user.gender == "male")
-				{
-					us.Sex = true;
-				}
-				else us.Sex = false;
-				_context.Users.Add(us);
-				_context.SaveChanges();
-				return new JsonResult(new { message = "Save user Success!" });
-			}
-			return new JsonResult(new { message = "User Infor has error!" });
-		}
+		}		
 	}
 }

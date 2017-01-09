@@ -23,16 +23,11 @@ export class Auth {
                 localStorage.setItem('id_token', authResult.idToken);
                 localStorage.setItem('profile', JSON.stringify(profile));
                 console.log(profile);
+                // send profile user to server
                 userservice.postinforuser(profile).subscribe((data) => console.log(data));
             });         
              
         });  
-        //this.userservice.postinforuser(profile).subscribe(
-        //    (data) => console.log(data)
-        //);
-        console.log('Constructor');
-        // write log user.
-       
     }
     ngOnInit() {
        

@@ -1,11 +1,21 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, Pipe } from '@angular/core';
 import { Auth } from '../service/auth.service';
 declare var $: any;
 
+@Pipe({
+    name: "explode"
+
+})
+export class ExplodePipe {
+    transform(value) {
+        return value.split(';', 1);
+    }
+}
+
 @Component({
-    selector: 'category',
+    selector: 'category',    
     template: require('./category.component.html'),
-    styles: [require('./category.component.css')]
+    styles: [require('./category.component.css')],
 })
 
 export class CategoryComponent implements OnInit{
