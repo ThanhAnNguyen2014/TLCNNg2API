@@ -11,14 +11,19 @@ import { DetailComponent } from '../detail/detail.component';
 import { CartComponent } from '../cart/cart.component';
 
 
+import { TestComponent } from '../test/test.component';
+import { TestHttpComponent } from '../test-http/test-http.component';
+
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'contact', component: ContactComponent },
-    { path: 'category', component: CategoryComponent },
-    { path: 'detail', component: DetailComponent },
+    { path: 'category/:id', component: CategoryComponent },
+    { path: 'detail/:id', component: DetailComponent },
     { path: 'cart', component: CartComponent },
     { path: 'about', component: AboutComponent },
+    { path: 'test', component: TestComponent },
+    { path: 'test-http', component: TestHttpComponent },
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: '**', redirectTo: 'home' }
 ];

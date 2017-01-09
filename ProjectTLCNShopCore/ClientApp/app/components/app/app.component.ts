@@ -1,8 +1,6 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component } from '@angular/core';
+import { Http } from '@angular/http'
 import { Auth } from '../service/auth.service';
-import { UserService } from "../service/user.service";
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from "rxjs/Observable";
 
 @Component({
     selector: 'my-app',
@@ -10,21 +8,17 @@ import { Observable } from "rxjs/Observable";
     styles: [require('./app.component.css')]
 })
 export class AppComponent {
-    profile: any;
+    //profile: any;
     constructor(private auth: Auth) {
-        this.profile = JSON.parse(localStorage.getItem('profile'));
-        //this.userservice.postinforuser(this.profile).subscribe(
-        //    (data) => console.log(data)
-        //);    
+        //this.profile = JSON.parse(localStorage.getItem('profile'));
     }
-    ngOnInit(){ }
-
-    public postuser() {
-        //console.log(this.profile);
-        // Get all comments
-        //this.userservice.postinforuser(this.profile).subscribe(
-        //    (data) => console.log(data)
-        //);
-
-    }
+    //constructor(private auth: Auth) { }
+        
+       
+    //constructor(http: Http) {
+    //    http.get('/api/api/').subscribe(result => {
+    //        this.cate = result.json();
+    //    });
+    //}
+ 
 };

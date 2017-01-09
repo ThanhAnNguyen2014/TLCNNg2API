@@ -1,10 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { AUTH_PROVIDERS } from 'angular2-jwt';
 import { routing, appRoutingProviders } from './components/routes/app.routes';
+//service
 import { AuthGuard } from './components/guard/auth.guard';
 import { Auth } from './components/service/auth.service';
-import { UserService } from "./components/service/user.service";
+import { TestHttpService } from './components/service/test-http.service';
+import { CategoryService } from './components/service/category.service';
+import { ProductService } from './components/service/product.service';
+import { ContactService } from './components/service/contact.service';
+import { UserService } from './components/service/user.service';
+
+import './rxjs-extensions';
+
+import { BrowserModule } from '@angular/platform-browser';
+
 
 import { HttpModule, JsonpModule } from '@angular/http';
 import { UniversalModule } from 'angular2-universal';
@@ -17,13 +28,18 @@ import { FooterComponent } from './components/_footer/footer.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { CategoryComponent } from './components/category/category.component';
+import { CategoryComponent, ExplodePipe } from './components/category/category.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { CartComponent } from './components/cart/cart.component';
 
 
+import { TestComponent } from './components/test/test.component';
+import { TestHttpComponent } from './components/test-http/test-http.component';
+
+
+
 @NgModule({
-    bootstrap: [AppComponent],
+    bootstrap: [ AppComponent],
     declarations: [
         AppComponent,
         HomeComponent,
@@ -32,24 +48,36 @@ import { CartComponent } from './components/cart/cart.component';
         FooterComponent,
         ContactComponent,
         CategoryComponent,
+        TestComponent,
         CartComponent,
         DetailComponent,
         AboutComponent,
-        ProfileComponent
+        ProfileComponent,
+        //test-http
+        TestHttpComponent,
+        
+        ExplodePipe
 
+        
     ],
     providers: [
         appRoutingProviders,
         AUTH_PROVIDERS,
         Auth,
         AuthGuard,
+        TestHttpService,
+        CategoryService,
+        ProductService,
+        ContactService,
         UserService
+        
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
         HttpModule,
         JsonpModule,
-        routing
+        routing,
+        FormsModule
     ]
 })
 export class AppModule {
