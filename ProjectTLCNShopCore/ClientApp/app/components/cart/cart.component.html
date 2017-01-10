@@ -14,7 +14,6 @@
 <div class="checkout">
     <div class="container">
         <h3>My Shopping Bag</h3>
-        <h3 *ngFor="let item of line">{{item?.product?.productName}}</h3>
         <div class="table-responsive checkout-right animated wow slideInUp" data-wow-delay=".5s">
             <table class="timetable_sub">
                 <thead>
@@ -26,24 +25,28 @@
                         <th>Price</th>
                     </tr>
                 </thead>
-                <tr class="rem1" *ngFor="let item of line">
-                    <td class="invert-closeb" >
-                        <div class="rem">
-                            <a class="close1"  (click)="removeLineCart(item?.product?.productID)" ></a>
-                        </div>
-                    </td>
-                    <td class="invert-image"><a href="#"><img src="{{item?.product?.picture}}"  class="img-responsive" /></a></td>
-                    <td class="invert">
-                        <div class="quantity">
-                            <div class="quantity-select">
-                                <div  routerLink="/cart" class="entry value-minus" (click)="removeCart(item?.product?.productID)">&nbsp;</div>
-                                <div class="entry value"><span>{{item?.quantity}}</span></div>
-                                <div  routerLink="/cart" class="entry value-plus active" (click)="plusCart(item?.product?.productID)"></div>
+                <tr class="rem1" *ngFor="let item of rowDataMainForm ;let addressFormIndex =index">
+                          
+
+                        <td class="invert-closeb">
+                            <div class="rem">
+                                
+                                <a class="close1" (click)="deleteLineCart(addressFormIndex,item.product.productID)"></a>
                             </div>
-                        </div>
-                    </td>
-                    <td class="invert">{{item?.product?.productName}}</td>
-                    <td class="invert">{{item?.product?.unitPrice}}</td>
+                        </td>
+                        <td class="invert-image"><a href="#"><img src="{{item.product.picture}}" class="img-responsive" /></a></td>
+                        <td class="invert">
+                            <div class="quantity">
+                                <div class="quantity-select">
+                                    <div class="entry value-minus" (click)="MinusProduct(addressFormIndex,item.product.productID)"></div>
+                                    <div class="entry value"><span>{{item.quantity}}</span></div>
+                                    <div class="entry value-plus active" (click)="PlusProduct(addressFormIndex,item.product.productID)"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="invert">{{item.product.productName}}</td>
+                        <td class="invert">{{item.product.unitPrice}} VNĐ</td>
+                    
                 </tr>
               
                 
@@ -58,12 +61,12 @@
             </div>
             <div class="checkout-left-basket animated wow slideInLeft" data-wow-delay=".5s">
                 <h4>Shopping basket</h4>
-                <ul>
-                    <li>Hand Bag <i>-</i> <span>$45.99</span></li>
-                    <li>Watches <i>-</i> <span>$45.99</span></li>
-                    <li>Sandals <i>-</i> <span>$45.99</span></li>
-                    <li>Wedges <i>-</i> <span>$45.99</span></li>
-                    <li>Total <i>-</i> <span>{{cart1?.totalPrice}}</span></li>
+                <ul *ngFor="let item1 of rowDataMainForm ;let addressFormIndex =index">
+                    <li>{{item1.product.productName}} <i>-</i> <span>{{item1.product.Price}}</span></li>
+                    
+                </ul>
+                <ul> 
+                    <li  >Total <i>-</i> <span>{{cart1?.totalPrice }}</span></li>
                 </ul>
             </div>
             <div class="clearfix"> </div>

@@ -1,5 +1,6 @@
 ﻿import { Component, OnInit,Pipe } from '@angular/core';
 import { Auth } from '../service/auth.service';
+import { CartService } from '../service/cart.service';
 
 
 import { Router } from '@angular/router';
@@ -29,12 +30,18 @@ export class ExplodePipe {
 export class CategoryComponent implements OnInit{
     public pro: Product[] = [];
     public id: number;
-    constructor(private auth: Auth, private proService: ProductService, private route: ActivatedRoute,
+    constructor(private auth: Auth, private proService: ProductService,private cartService: CartService, private route: ActivatedRoute,
         private location: Location) {
         this.route.params
             .switchMap((params: Params) => this.proService.getProduct(+params['id']))
             .subscribe(pro => this.pro = pro);
          console.log(this.pro);
+    }
+    // add to cart
+    addCart(id) {
+        console.log();
+        this.cartService
+            .addToCart(id);
     }
     // scroll tto top
     ngOnInit() {

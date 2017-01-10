@@ -38,11 +38,11 @@
 
                         </div>
                         <div class="item-info-product ">
-                            <h4><a routerLink="/detail">{{pro1.productName}}</a></h4>
+                            <h4><a [routerLink]="['/detail', pro1.productID]">{{pro1.productName}}</a></h4>
                             <div class="info-product-price">
                                 <span class="item_price">{{pro1.unitPrice}} VNĐ</span>
                             </div>
-                            <a routerLink="/cart" class="item_add single-item hvr-outline-out button2">Add to cart</a>
+                            <a  [routerLink]="['/cart']" class="item_add single-item hvr-outline-out button2" (click)="addCart(pro1.productID)">Add to cart</a>
                         </div>
                     </div>
                 </div>

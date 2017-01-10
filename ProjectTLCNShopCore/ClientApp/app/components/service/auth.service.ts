@@ -10,7 +10,7 @@ declare var Auth0Lock: any;
 @Injectable()
 export class Auth {
     // Configure Auth0
-    lock = new Auth0Lock('gxxqskooruGfCZ0JPyNOxyDVBkYyORkW', 'shopapi.auth0.com', {});
+    lock = new Auth0Lock('mSXM9aiq7y2Ltd6GiOCRcAtchK6fVaL7', 'polo33333.auth0.com', {});
     profile: any;
     userinfor: any;
     constructor(private http: Http, private userservice: UserService) {
