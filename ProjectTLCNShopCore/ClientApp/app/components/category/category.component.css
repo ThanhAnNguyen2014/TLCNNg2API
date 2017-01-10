@@ -48,7 +48,7 @@ label{
 }
 .dropdown-menu.columns-3 {
     min-width: 700px;
-    padding: 30px 30px;
+    padding: 100px 30px;
 }
 .multi-gd-img img{
 	width:100%;
@@ -3535,9 +3535,10 @@ td.invert-image a img {
 .banner1{
 	background:url(/images/10.jpg) no-repeat 0px -90px;
 	background-size:cover;
-	min-height:400px;
+	min-height:300px;
 	padding:7em 0 2em;
 	text-align:center;
+    margin-bottom:30px;
 }
 .banner1 h3{
 	font-size:2.5em;

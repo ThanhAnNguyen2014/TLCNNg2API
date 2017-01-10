@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+﻿import { Component, ChangeDetectorRef } from '@angular/core';
 import { Auth } from '../service/auth.service';
 import { Location } from '@angular/common';
 import { CartService } from '../service/cart.service';
@@ -11,24 +11,24 @@ declare var $: any;
     styles: [require('./cart.component.css')]
 })
 
-export class CartComponent implements OnInit {
+export class CartComponent {
 
     public cart1: CartFull;
     public line: Cart;
-    rowDataMainForm = [];
+    public rowDataMainForm = [];
     id: number;
    // line: cart;
     constructor(private changeDetectorRef: ChangeDetectorRef,private auth: Auth, private location: Location, private cartService: CartService) {
-
         // get cart
+
             console.log(this.cart1);
-            this.cartService.getCart().subscribe(data => this.cart1 = data),
+            this.cartService.getCart().subscribe(data1 => this.cart1 = data1),
                 error => alert(error),
                 () => console.log("getCart");
-            console.log(this.rowDataMainForm);
             this.cartService.getLineCart().subscribe(data => this.rowDataMainForm = data);
+            
     };
-    ngOnInit():any {
+    //ngOnInit():any {
         //// quantity plus
         //$('.value-plus').on('click', function () {
         //    var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) + 1;
@@ -51,7 +51,7 @@ export class CartComponent implements OnInit {
         // get cart
        
 
-        }
+        //}
     //plusCart(id) {
     //        this.cartService
     //        .addToCart(id);
@@ -68,10 +68,10 @@ export class CartComponent implements OnInit {
     //}
 
 
-    //goBack(): void {
-    //    this.location.back();
-    //}
-    ////
+    goBack(): void {
+        this.location.back();
+    }
+    //
     //ngAfterViewInit() {
 
 
@@ -86,7 +86,6 @@ export class CartComponent implements OnInit {
     //}];
     deleteLineCart(rowNumber: number,id) {
         this.rowDataMainForm.splice(rowNumber, 1);
-        
    
         //xóa line cart
         this.cartService
@@ -94,49 +93,52 @@ export class CartComponent implements OnInit {
 
         //load lia card
 
-        this.cartService.getCart().subscribe(data => this.cart1 = data),
+        this.cartService.getCart().subscribe(data1 => this.cart1 = data1),
             error => alert(error),
             () => console.log("getCart");
         console.log(this.rowDataMainForm);
         this.cartService.getLineCart().subscribe(data => this.rowDataMainForm = data);
+        
         this.changeDetectorRef.detectChanges();
+        
+        
     }
 
 
     PlusProduct(rowNumber: number, id) {
         this.rowDataMainForm.splice(rowNumber, 0);
-        
+        this.changeDetectorRef.detectChanges();
 
         //add cart
         this.cartService
             .addToCart(id);
 
         //load lia card
-
-        this.cartService.getCart().subscribe(data => this.cart1 = data),
+        this.cartService.getLineCart().subscribe(data => this.rowDataMainForm = data);
+        this.cartService.getCart().subscribe(data1 => this.cart1 = data1),
             error => alert(error),
             () => console.log("getCart");
         console.log(this.rowDataMainForm);
-        this.cartService.getLineCart().subscribe(data => this.rowDataMainForm = data);
-        this.changeDetectorRef.detectChanges();
+     
+        
     }
 
     MinusProduct(rowNumber: number, id) {
         this.rowDataMainForm.splice(rowNumber, 0);
-        //this.changeDetectorRef.detectChanges();
+        this.changeDetectorRef.detectChanges();
 
         //giam product cart
         this.cartService
             .removeToCart(id);
 
         //load lia card
-
-        this.cartService.getCart().subscribe(data => this.cart1 = data),
+        this.cartService.getLineCart().subscribe(data => this.rowDataMainForm = data);
+        this.cartService.getCart().subscribe(data1 => this.cart1 = data1),
             error => alert(error),
             () => console.log("getCart");
         console.log(this.rowDataMainForm);
-        this.cartService.getLineCart().subscribe(data => this.rowDataMainForm = data);
-        this.changeDetectorRef.detectChanges();
+        
+       
     }
     
 };

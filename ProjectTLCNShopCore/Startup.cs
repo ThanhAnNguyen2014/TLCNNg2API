@@ -45,7 +45,7 @@ namespace ProjectTLCNShopCore
 			//services.AddDbContext<ApplicationDbContext>(options =>
 			//    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 			//Server =.; Database = MyProjectDatabase; Trusted_Connection = True;
-			var connection = @"Server=.;Database=ProjectShopAPI;Trusted_Connection=True;";
+			var connection = @"Server=.;Database=TLCNShopAPI;Trusted_Connection=True;";
 			services.AddDbContext<ProjectShopAPIContext>(options => options.UseSqlServer(connection));
 
 			services.AddApplicationInsightsTelemetry(Configuration);
