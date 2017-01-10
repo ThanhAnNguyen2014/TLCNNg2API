@@ -4,7 +4,7 @@
       rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0.5)
     ),
-    url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/cheese-curds.jpg);
+    url(/images/phone.jpg);
   background-size: cover;
   height: 100vh;
 }
@@ -20,7 +20,7 @@
 h1 {
   text-transform: uppercase;
   margin: 0;
-  font-size: 3rem;
+  font-size: 6rem;
   white-space: nowrap;
 }
 h2 {
@@ -28,5 +28,5 @@ h2 {
 }
 p {
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 2rem;
 }

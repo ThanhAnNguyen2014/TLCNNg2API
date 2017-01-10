@@ -7,7 +7,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Product } from '../module/product';
-import { ProductService } from '../service/product.service'
+import { ProductService } from '../service/product.service';
+import { CartService } from '../service/cart.service'
 declare var $: any;
 
 @Component({
@@ -17,11 +18,10 @@ declare var $: any;
 })
 
 export class DetailComponent implements OnInit {
-
+    id: number;
    prodetail: Product;
-    public id: number;
     constructor(private auth: Auth, private proService: ProductService, private route: ActivatedRoute,
-        private location: Location) {
+        private location: Location, private cartService: CartService) {
         this.route.params
             .switchMap((params: Params) => this.proService.getProductDetail(+params['id']))
             .subscribe(prodetail =>this.prodetail = prodetail);
@@ -29,6 +29,15 @@ export class DetailComponent implements OnInit {
     }
     ngOnInit() {
 
+    }
+
+    addCart() {
+        this.cartService
+            .addToCart(this.prodetail.productID);
+    }
+
+    goBack(): void {
+        this.location.back();
     }
 
 };

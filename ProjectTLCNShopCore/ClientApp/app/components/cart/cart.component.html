@@ -14,6 +14,7 @@
 <div class="checkout">
     <div class="container">
         <h3>My Shopping Bag</h3>
+        <h3 *ngFor="let item of line">{{item?.product?.productName}}</h3>
         <div class="table-responsive checkout-right animated wow slideInUp" data-wow-delay=".5s">
             <table class="timetable_sub">
                 <thead>
@@ -25,85 +26,28 @@
                         <th>Price</th>
                     </tr>
                 </thead>
-                <tr class="rem1">
-                    <td class="invert-closeb">
+                <tr class="rem1" *ngFor="let item of line">
+                    <td class="invert-closeb" >
                         <div class="rem">
-                            <div class="close1"> </div>
+                            <a class="close1"  (click)="removeLineCart(item?.product?.productID)" ></a>
                         </div>
                     </td>
-                    <td class="invert-image"><a href="single.html"><img src="/images/category/w4.png" alt=" " class="img-responsive" /></a></td>
+                    <td class="invert-image"><a href="#"><img src="{{item?.product?.picture}}"  class="img-responsive" /></a></td>
                     <td class="invert">
                         <div class="quantity">
                             <div class="quantity-select">
-                                <div class="entry value-minus">&nbsp;</div>
-                                <div class="entry value"><span>1</span></div>
-                                <div class="entry value-plus active">&nbsp;</div>
+                                <div  routerLink="/cart" class="entry value-minus" (click)="removeCart(item?.product?.productID)">&nbsp;</div>
+                                <div class="entry value"><span>{{item?.quantity}}</span></div>
+                                <div  routerLink="/cart" class="entry value-plus active" (click)="plusCart(item?.product?.productID)"></div>
                             </div>
                         </div>
                     </td>
-                    <td class="invert">Hand Bag</td>
-                    <td class="invert">$45.99</td>
+                    <td class="invert">{{item?.product?.productName}}</td>
+                    <td class="invert">{{item?.product?.unitPrice}}</td>
                 </tr>
-                <tr class="rem2">
-                    <td class="invert-closeb">
-                        <div class="rem">
-                            <div class="close2"> </div>
-                        </div>
-                    </td>
-                    <td class="invert-image"><a href="single.html"><img src="/images/category/ep3.png" alt=" " class="img-responsive" /></a></td>
-                    <td class="invert">
-                        <div class="quantity">
-                            <div class="quantity-select">
-                                <div class="entry value-minus">&nbsp;</div>
-                                <div class="entry value"><span>1</span></div>
-                                <div class="entry value-plus active">&nbsp;</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="invert">Watches</td>
-                    <td class="invert">$45.99</td>
-
-                </tr>
-                <tr class="rem3">
-                    <td class="invert-closeb">
-                        <div class="rem">
-                            <div class="close3"> </div>
-                        </div>
-                    </td>
-                    <td class="invert-image"><a href="single.html"><img src="/images/category/w2.png" alt=" " class="img-responsive" /></a></td>
-                    <td class="invert">
-                        <div class="quantity">
-                            <div class="quantity-select">
-                                <div class="entry value-minus">&nbsp;</div>
-                                <div class="entry value"><span>1</span></div>
-                                <div class="entry value-plus active">&nbsp;</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="invert">Sandals</td>
-                    <td class="invert">$45.99</td>
-
-                </tr>
-                <tr class="rem4">
-                    <td class="invert-closeb">
-                        <div class="rem">
-                            <div class="close4"> </div>
-                        </div>
-                    </td>
-                    <td class="invert-image"><a href="single.html"><img src="/images/category/w1.png" alt=" " class="img-responsive" /></a></td>
-                    <td class="invert">
-                        <div class="quantity">
-                            <div class="quantity-select">
-                                <div class="entry value-minus">&nbsp;</div>
-                                <div class="entry value"><span>1</span></div>
-                                <div class="entry value-plus active">&nbsp;</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="invert">Wedges</td>
-                    <td class="invert">$45.99</td>
-
-                </tr>
+              
+                
+               
             </table>
         </div>
         <div class="checkout-left">
@@ -119,7 +63,7 @@
                     <li>Watches <i>-</i> <span>$45.99</span></li>
                     <li>Sandals <i>-</i> <span>$45.99</span></li>
                     <li>Wedges <i>-</i> <span>$45.99</span></li>
-                    <li>Total <i>-</i> <span>$183.96</span></li>
+                    <li>Total <i>-</i> <span>{{cart1?.totalPrice}}</span></li>
                 </ul>
             </div>
             <div class="clearfix"> </div>

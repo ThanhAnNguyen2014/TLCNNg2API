@@ -11,6 +11,7 @@ import { CategoryService } from './components/service/category.service';
 import { ProductService } from './components/service/product.service';
 import { ContactService } from './components/service/contact.service';
 import { UserService } from './components/service/user.service';
+import { CartService } from './components/service/cart.service';
 
 import './rxjs-extensions';
 
@@ -69,7 +70,8 @@ import { TestHttpComponent } from './components/test-http/test-http.component';
         CategoryService,
         ProductService,
         ContactService,
-        UserService
+        UserService,
+        CartService
         
     ],
     imports: [

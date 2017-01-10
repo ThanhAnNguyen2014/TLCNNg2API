@@ -19,7 +19,6 @@ export class ContactService {
         var header = new Headers();
         header.append('Content-type', 'application/json');
         // console.log(this.user);
-        console.log("xxx");
         return this._http.post("/api/api/getcontact", model, {
             headers: header
         })

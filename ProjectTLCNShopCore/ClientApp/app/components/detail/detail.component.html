@@ -4,7 +4,7 @@
     <div class="container">
         <ul class="w3_short">
             <li><a routerLink="/">Home</a><i>/</i></li>
-            <li><a routerLink="/category">Electronics</a><i>/</i></li>
+            <li><a (click)="goBack()">Electronics</a><i>/</i></li>
             <li>Detail</li>
         </ul>
     </div>
@@ -26,8 +26,8 @@
             </div>
         </div>
         <div class="col-md-6 single-right-left simpleCart_shelfItem animated wow slideInRight animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInRight;" >
-            <h3 >{{prodetail?.productName}}</h3>
-            <p><span class="item_price">{{prodetail?.unitPrice}}  VNĐ</span> </p>
+            <h3 >{{prodetail?.productName | uppercase}}</h3>
+            <p><span class="item_price">{{prodetail?.unitPrice | currency:'VND'}}</span> </p>
             <div class="rating1">
                 <span class="starRating">
                     <input id="rating5" type="radio" name="rating" value="5">
@@ -68,7 +68,7 @@
                 <div class="clearfix"> </div>
             </div>
             <div class="occasion-cart">
-                <a routerLink="/cart" class="item_add hvr-outline-out button2">Add to cart</a>
+                <a [routerLink]="['/cart']" class="item_add hvr-outline-out button2" (click)="addCart()">Add to cart</a>
             </div>
 
         </div>
@@ -77,12 +77,12 @@
         <div class="bootstrap-tab animated wow slideInUp animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInUp;">
             <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                 <ul id="myTab" class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Description</a></li>
+                    <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Mô tả</a></li>
                     
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active bootstrap-tab-text" id="home" aria-labelledby="home-tab">
-                        <h5>Product Brief Description</h5>
+                        <h5>Thông tin sản phẩm</h5>
                         <p innerHTML="{{ prodetail?.note }}">
                         </p>
                     </div>
