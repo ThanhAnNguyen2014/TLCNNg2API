@@ -15,7 +15,8 @@ namespace ProjectTLCNShopCore.EF
 
 
 		public virtual DbSet<Admin> Admin { get; set; }
-        public virtual DbSet<AdmininstrativeUnit> AdmininstrativeUnit { get; set; }
+		public virtual DbSet<Contacts> Contacts { get; set; }
+		public virtual DbSet<AdmininstrativeUnit> AdmininstrativeUnit { get; set; }
         public virtual DbSet<Attendance> Attendance { get; set; }
         public virtual DbSet<Categories> Categories { get; set; }
         public virtual DbSet<Customers> Customers { get; set; }
@@ -47,7 +48,19 @@ namespace ProjectTLCNShopCore.EF
                 entity.Property(e => e.Password).HasMaxLength(50);
             });
 
-            modelBuilder.Entity<AdmininstrativeUnit>(entity =>
+			modelBuilder.Entity<Contacts>(entity =>
+			{
+				entity.Property(e => e.ContactId).HasColumnName("ContactID");
+
+				entity.Property(e => e.Email).HasMaxLength(50);
+
+				entity.Property(e => e.Name).HasMaxLength(50);
+				entity.Property(e => e.Phone).HasMaxLength(12);
+				entity.Property(e => e.Subject).HasMaxLength(255);
+				entity.Property(e => e.Message).HasMaxLength(255);
+			});
+
+			modelBuilder.Entity<AdmininstrativeUnit>(entity =>
             {
                 entity.HasKey(e => e.MaPx)
                     .HasName("PK_Admininstrative_Unit");

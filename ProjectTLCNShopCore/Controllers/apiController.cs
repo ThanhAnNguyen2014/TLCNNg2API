@@ -50,9 +50,15 @@ namespace ProjectTLCNShopCore.Controllers
 		}
         // nhận thông tin contact
         [HttpPost("getcontact")]
-        public IActionResult GetContactInfor([FromBody] Contact contact)
+		public IActionResult GetContactInfor([FromBody] Contacts contact)
         {
-            return new JsonResult(new { message = "success!" });
+			if (contact != null)
+			{
+				_context.Add(contact);
+				_context.SaveChanges();
+				return new JsonResult(new { message = "success!" });
+			}
+            return new JsonResult(new { message = "Error!" });
         }
         // lấy thông tin sản phẩm theo Id
         [HttpGet("product/{id}")]

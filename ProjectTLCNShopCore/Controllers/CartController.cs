@@ -22,7 +22,7 @@ namespace ProjectTLCNShopCore.Controllers
 	{
 		ProjectShopAPIContext _context;
 		private readonly IMapper _mapper;
-		
+
 		private Cart cart;
 		public CartController(ProjectShopAPIContext context, IMapper mapper, Cart cartService)
 		{
@@ -81,19 +81,6 @@ namespace ProjectTLCNShopCore.Controllers
 			}
 			return RedirectToAction("Index");
 		}
-		/*public RedirectToActionResult UpdateCart(int id)
-		{
-			Products product = _context.Products.FirstOrDefault(p => p.ProductId == id);
-			ProductModel productModel = _mapper.Map<ProductModel>(product);
-			if (product != null)
-			{
-				Cart cart = GetCart();
-				cart.RemoveItem(productModel);
-				SaveCart(cart);
-			}
-			return RedirectToAction("Index");
-		}*/
-
 		// xoa dong co chua san pham trong Cart
 		[HttpGet("removelinecart/{id}")]
 		public RedirectToActionResult RemoveFromCart(int id)
@@ -118,27 +105,6 @@ namespace ProjectTLCNShopCore.Controllers
 		{
 			return new JsonResult(new { message = "You have no items in your shopping cart" });
 		}
-		/*public RedirectToActionResult RemoveFromCart(int id)
-		{
-			Products product = _context.Products.FirstOrDefault(p => p.ProductId == id);
-			ProductModel productModel = _mapper.Map<ProductModel>(product);
-			if (product != null)
-			{
-				Cart cart = GetCart();
-				cart.RemoveLine(productModel);
-				SaveCart(cart);
-			}
-			return RedirectToAction("Index");
-		}*/
-		/*private Cart GetCart()
-		{
-			Cart cart = HttpContext.Session.GetJson<Cart>("Cart") ?? new Cart();
-			return cart;
-		}*/
-		/*private void SaveCart(Cart cart)
-		{
-			HttpContext.Session.SetJson("Cart", cart);
-		}*/
 
 		// Nhan thong tin nguoi dung
 		[HttpPost("getuser")]
@@ -160,7 +126,7 @@ namespace ProjectTLCNShopCore.Controllers
 				us.Lpoint = 0;
 				if (user.gender == "male")
 				{
-					us.Sex = true;
+					us.Sex = true; // gioi tinh nam
 				}
 				else us.Sex = false;
 				_context.Users.Add(us);
@@ -175,13 +141,13 @@ namespace ProjectTLCNShopCore.Controllers
 		public IActionResult CheckOutGet([FromBody] CheckOutInfor imv)
 		{
 
-			decimal pricediscount, total=0;
+			decimal pricediscount, total = 0;
 			Customers selectCustomer = new Customers();
 			Customers newCustomer = new Customers();
 			Orders order = new Orders();
 			if (imv != null)
 			{
-				
+
 				// kiem tra user co la thanh vien khong?
 				if (new MyDao(_context).CheckUser(imv.order.Email))
 				{
@@ -199,12 +165,12 @@ namespace ProjectTLCNShopCore.Controllers
 					newCustomer.UserId = null; // default guest(userid=2)
 				}
 
-				
+
 				newCustomer.IsDeleted = false;
 				newCustomer.IsDefault = false;
 				//newCustomer.CustomerId = imv.newCustomer.CustomerId;
 				var custom = new MyDao(_context).AddCustomer(newCustomer);
-				if(custom)
+				if (custom)
 				{
 					selectCustomer = newCustomer;
 					order.Email = imv.order.Email;
@@ -229,7 +195,7 @@ namespace ProjectTLCNShopCore.Controllers
 				{
 					Products product = _context.Products.Where(n => n.ProductId == i.Product.ProductID && n.IsDelete == false).FirstOrDefault();
 					pricediscount = (product.Discount.Value * product.UnitPrice.Value) / 100; // tinh so tien giam gia
-					total = total+ pricediscount; //tong so tien cua san pham sau khi giam gia
+					total = total + pricediscount; //tong so tien cua san pham sau khi giam gia
 				}
 				// Luu thong tin order
 				order.CustomerId = selectCustomer.CustomerId;
@@ -248,7 +214,7 @@ namespace ProjectTLCNShopCore.Controllers
 				if (od)
 				{
 					int orderid = order.OrderId;
-					
+
 					foreach (var i in cart.Lines)
 					{
 						OrderDetails orderdetail = new OrderDetails();
@@ -257,7 +223,7 @@ namespace ProjectTLCNShopCore.Controllers
 						orderdetail.Quantity = short.Parse(i.Quantity.ToString());
 						orderdetail.UnitPrice = decimal.Parse(i.Product.UnitPrice.ToString());
 						orderdetail.Discount = float.Parse(i.Product.Discount.ToString());
-						if(new MyDao(_context).AddOrderDetail(orderdetail))
+						if (new MyDao(_context).AddOrderDetail(orderdetail))
 						{
 							totalPrice += orderdetail.Quantity * orderdetail.UnitPrice;
 							// giam so luong san pham trong kho
@@ -270,7 +236,7 @@ namespace ProjectTLCNShopCore.Controllers
 						{
 							return new JsonResult(new { message = "Error saving order information!" });
 						}
-						
+
 					}
 					order.TotalPrice = totalPrice + order.Freight - order.TotalDiscount;
 					_context.Orders.Update(order);
@@ -285,42 +251,8 @@ namespace ProjectTLCNShopCore.Controllers
 				}
 			}
 			else
-			return new JsonResult(new { Message = "Server Error!" });
-		}
-		//public IActionResult CheckOutGet([FromBody] InforCheckoutCustomer inforCus)
-		//{
-		//	CheckOutInfor checkoutinfor = new CheckOutInfor();
-		//	Customers selectCustomer = new Customers();
-		//	Customers newCustomer = new Customers();
-		//	Orders order = new Orders();
-		//	OrderDetails orderDetail = new OrderDetails();
-		//	if (ModelState.IsValid)
-		//	{
-		//		if (inforCus != null)
-		//		{
-
-		//			checkoutinfor.IsNewCustomer = true;
-		//			checkoutinfor.newCustomer.FullName = inforCus.name;
-		//			checkoutinfor.newCustomer.Phone = inforCus.phone;
-		//			newCustomer = checkoutinfor.newCustomer;
-		//			// Neu chua dang nhap
-		//			newCustomer.UserId = 2; // default guest
-		//			newCustomer.IsDeleted = false;
-		//			newCustomer.IsDefault = false;
-		//			var result = new MyDao(_context).AddCustomer(newCustomer);
-		//			if (result)
-		//			{
-		//				return new JsonResult(new { message = "Save Success!" });
-		//			}
-		//		}
-
-
-
-		//		return new JsonResult(new { message = "CheckOut Success!, Thank you!" });
-		//	}
-
-		//	return new JsonResult(new { message = "You have not entered information!" });
-		//}
+				return new JsonResult(new { Message = "Server Error!" });
+		} 
 
 		[HttpGet("getcheckout")]
 		public IActionResult CheckOut()
@@ -334,23 +266,5 @@ namespace ProjectTLCNShopCore.Controllers
 			return new JsonResult(infor);
 		}
 
-		//[HttpPost("addcustomer")]
-		//public IActionResult AddCustomer([FromBody] Customers custom)
-		//{
-		//	if (custom != null)
-		//	{
-		//		Customers cus = new Customers();
-		//		cus.FullName = custom.FullName;
-		//		cus.Address = custom.Address;
-		//		cus.Phone = custom.Phone;
-		//		//cus.IsDefault = false;
-		//		cus.IsDeleted = false;
-		//		cus.UserId = 2;
-		//		_context.Customers.Add(cus);
-		//		_context.SaveChanges();
-		//		return new JsonResult(new { message = "Success!" });
-		//	}
-		//	return new JsonResult(new { message = "Error!" });
-		//}
 	}
 }
