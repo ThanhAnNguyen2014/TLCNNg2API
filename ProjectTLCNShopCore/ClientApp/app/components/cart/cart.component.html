@@ -45,7 +45,8 @@
                             </div>
                         </td>
                         <td class="invert">{{item.product.productName}}</td>
-                        <td class="invert">{{item.product.unitPrice}} VNĐ</td>
+                        <td class="invert">{{item.price}} VNĐ</td>
+                    <td>Total <i>-</i> <span>{{cart1?.totalPrice }}</span></td>
                     
                 </tr>
               
@@ -66,7 +67,7 @@
                     
                 </ul>
                 <ul> 
-                    <li  >Total <i>-</i> <span>{{cart1?.totalPrice }}</span></li>
+                    <li >Total <i>-</i> <span>{{cart1?.totalPrice }}</span></li>
                 </ul>
             </div>
             <div class="clearfix"> </div>

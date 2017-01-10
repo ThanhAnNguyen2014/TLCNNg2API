@@ -13,7 +13,7 @@ declare var $: any;
 
 export class CartComponent {
 
-    public cart1: CartFull;
+    public cart1: string;
     public line: Cart;
     public rowDataMainForm = [];
     id: number;
@@ -107,38 +107,36 @@ export class CartComponent {
 
     PlusProduct(rowNumber: number, id) {
         this.rowDataMainForm.splice(rowNumber, 0);
-        this.changeDetectorRef.detectChanges();
+      
 
         //add cart
         this.cartService
             .addToCart(id);
 
         //load lia card
+       
+    
         this.cartService.getLineCart().subscribe(data => this.rowDataMainForm = data);
-        this.cartService.getCart().subscribe(data1 => this.cart1 = data1),
-            error => alert(error),
-            () => console.log("getCart");
-        console.log(this.rowDataMainForm);
-     
-        
+        this.cartService.getCart().subscribe(data1 => this.cart1 = data1);
+        this.changeDetectorRef.detectChanges();
     }
 
     MinusProduct(rowNumber: number, id) {
         this.rowDataMainForm.splice(rowNumber, 0);
-        this.changeDetectorRef.detectChanges();
+        
 
         //giam product cart
         this.cartService
             .removeToCart(id);
 
         //load lia card
-        this.cartService.getLineCart().subscribe(data => this.rowDataMainForm = data);
+       
         this.cartService.getCart().subscribe(data1 => this.cart1 = data1),
             error => alert(error),
             () => console.log("getCart");
         console.log(this.rowDataMainForm);
-        
-       
+        this.cartService.getLineCart().subscribe(data => this.rowDataMainForm = data);
+        this.changeDetectorRef.detectChanges();
     }
     
 };
