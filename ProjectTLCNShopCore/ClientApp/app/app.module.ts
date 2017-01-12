@@ -12,6 +12,8 @@ import { ProductService } from './components/service/product.service';
 import { ContactService } from './components/service/contact.service';
 import { UserService } from './components/service/user.service';
 import { CartService } from './components/service/cart.service';
+import { CheckOutService } from './components/service/checkout.service';
+import { SearchService } from './components/service/search.service';
 
 import './rxjs-extensions';
 
@@ -32,6 +34,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { CategoryComponent, ExplodePipe } from './components/category/category.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { CartComponent } from './components/cart/cart.component';
+import { CheckOutComponent } from './components/checkout/checkout.component';
+import { SearchComponent } from './components/search/search.component';
 
 
 import { TestComponent } from './components/test/test.component';
@@ -56,6 +60,9 @@ import { TestHttpComponent } from './components/test-http/test-http.component';
         ProfileComponent,
         //test-http
         TestHttpComponent,
+        CheckOutComponent,
+        SearchComponent,
+       
         
         ExplodePipe
 
@@ -71,7 +78,9 @@ import { TestHttpComponent } from './components/test-http/test-http.component';
         ProductService,
         ContactService,
         UserService,
-        CartService
+        CartService,
+        CheckOutService,
+        SearchService
         
     ],
     imports: [

@@ -8,7 +8,7 @@ export class Cart {
     line: Lines[];
 
 }
-export class Lines {
+interface  Lines {
     cartId: number;
     quantity: number;
     price: string;

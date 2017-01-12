@@ -138,123 +138,132 @@ namespace ProjectTLCNShopCore.Controllers
 
 
 		[HttpPost("postcheckout")]
-		public IActionResult CheckOutGet([FromBody] CheckOutInfor imv)
-		{
-
-			decimal pricediscount, total = 0;
-			Customers selectCustomer = new Customers();
-			Customers newCustomer = new Customers();
-			Orders order = new Orders();
-			if (imv != null)
-			{
-
-				// kiem tra user co la thanh vien khong?
-				if (new MyDao(_context).CheckUser(imv.order.Email))
-				{
-					// user is member.
-					// da dang nhap
-					newCustomer = imv.newCustomer;
-					imv.IsNewCustomer = false;
-					newCustomer.UserId = new MyDao(_context).GetId(imv.order.Email); // memeber
-				}
-				else
-				{
-					newCustomer = imv.newCustomer;
-					imv.IsNewCustomer = true;
-					// Neu Chua login					
-					newCustomer.UserId = null; // default guest(userid=2)
-				}
+        public IActionResult CheckOutGet([FromBody] InforCheckoutCustomer usercheckout)
+        {
+            CheckOutInfor imv = new CheckOutInfor();
+            imv.newCustomer = new Customers();
+            imv.order = new Orders();
+            imv.newCustomer.FullName = usercheckout.name;
+            imv.newCustomer.Address = usercheckout.address;
+            imv.newCustomer.Phone = usercheckout.phone;
+            imv.order.Email = usercheckout.email;
 
 
-				newCustomer.IsDeleted = false;
-				newCustomer.IsDefault = false;
-				//newCustomer.CustomerId = imv.newCustomer.CustomerId;
-				var custom = new MyDao(_context).AddCustomer(newCustomer);
-				if (custom)
-				{
-					selectCustomer = newCustomer;
-					order.Email = imv.order.Email;
-				}
-				else
-				{
-					return new JsonResult(new { Message = "Server Error! Customer unsaved!" });
-				}
-				//lấy giỏ hàng
-				CartViewModel cartvm = new CartViewModel();
-				cartvm.Cart = cart;
-				cartvm.TotalPrice = cart.ComputeTotalValue();
-				if (cart.Lines.Count() == 0 || cartvm.TotalPrice == "0,000 VNĐ")
-				{
-					return RedirectToAction("CartNull");
-				}
-				else
-				{
-					imv.Carts = cartvm;
-				}
-				foreach (var i in cart.Lines)
-				{
-					Products product = _context.Products.Where(n => n.ProductId == i.Product.ProductID && n.IsDelete == false).FirstOrDefault();
-					pricediscount = (product.Discount.Value * product.UnitPrice.Value) / 100; // tinh so tien giam gia
-					total = total + pricediscount; //tong so tien cua san pham sau khi giam gia
-				}
-				// Luu thong tin order
-				order.CustomerId = selectCustomer.CustomerId;
-				order.OrderDate = DateTime.Now;
-				order.ShipName = selectCustomer.FullName;
-				order.ShipPhone = selectCustomer.Phone;
-				order.ShipAddress = selectCustomer.Address;
-				order.Freight = 20000; // phi van chuyen mat dinh khi giao hang
-				order.Note = "";// mat dinh khong ghi chu
-				order.PaymentMethodId = 1;// mat dinh thanh toan la 1
-				order.IsPaid = false;
-				order.TotalDiscount = total;
-				//order.TotalDiscount=cartvm.TotalPrice
-				var od = new MyDao(_context).AddOrder(order);
-				decimal totalPrice = 0;
-				if (od)
-				{
-					int orderid = order.OrderId;
 
-					foreach (var i in cart.Lines)
-					{
-						OrderDetails orderdetail = new OrderDetails();
-						orderdetail.OrderId = orderid;
-						orderdetail.ProductId = i.Product.ProductID;
-						orderdetail.Quantity = short.Parse(i.Quantity.ToString());
-						orderdetail.UnitPrice = decimal.Parse(i.Product.UnitPrice.ToString());
-						orderdetail.Discount = float.Parse(i.Product.Discount.ToString());
-						if (new MyDao(_context).AddOrderDetail(orderdetail))
-						{
-							totalPrice += orderdetail.Quantity * orderdetail.UnitPrice;
-							// giam so luong san pham trong kho
-							Products product = _context.Products.Where(n => n.ProductId == i.Product.ProductID && n.IsDelete == false).FirstOrDefault();
-							product.UnitsInStock = short.Parse((product.UnitsInStock - orderdetail.Quantity).ToString());
-							_context.Entry(product).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-							_context.SaveChanges();
-						}
-						else
-						{
-							return new JsonResult(new { message = "Error saving order information!" });
-						}
+            decimal pricediscount, total = 0;
+            Customers selectCustomer = new Customers();
+            Customers newCustomer = new Customers();
+            Orders order = new Orders();
+            if (usercheckout != null)
+            {
+                //lấy giỏ hàng
+                CartViewModel cartvm = new CartViewModel();
+                cartvm.Cart = cart;
+                cartvm.TotalPrice = cart.ComputeTotalValue();
+                if (cart.Lines.Count() == 0 || cartvm.TotalPrice == "0,000 VNĐ")
+                {
+                    return RedirectToAction("CartNull");
+                }
+                else
+                {
+                    imv.Carts = cartvm;
+                }
+                // kiem tra user co la thanh vien khong?
+                if (new MyDao(_context).CheckUser(imv.order.Email))
+                {
+                    // user is member.
+                    // da dang nhap
+                    newCustomer = imv.newCustomer;
+                    imv.IsNewCustomer = false;
+                    newCustomer.UserId = new MyDao(_context).GetId(imv.order.Email); // memeber
+                }
+                else
+                {
+                    newCustomer = imv.newCustomer;
+                    imv.IsNewCustomer = true;
+                    // Neu Chua login					
+                    newCustomer.UserId = null; // default guest(userid=2)
+                }
 
-					}
-					order.TotalPrice = totalPrice + order.Freight - order.TotalDiscount;
-					_context.Orders.Update(order);
-					_context.SaveChanges();
-					// deleted cart.
-					cart.Clear();
-					return Ok(200);
-				}
-				else
-				{
-					return new JsonResult(new { Message = "Server Error!" });
-				}
-			}
-			else
-				return new JsonResult(new { Message = "Server Error!" });
-		} 
 
-		[HttpGet("getcheckout")]
+                newCustomer.IsDeleted = false;
+                newCustomer.IsDefault = false;
+                //newCustomer.CustomerId = imv.newCustomer.CustomerId;
+                var custom = new MyDao(_context).AddCustomer(newCustomer);
+                if (custom)
+                {
+                    selectCustomer = newCustomer;
+                    order.Email = imv.order.Email;
+                }
+                else
+                {
+                    return new JsonResult(new { Message = "Server Error! Customer unsaved!" });
+                }
+
+                foreach (var i in cart.Lines)
+                {
+                    Products product = _context.Products.Where(n => n.ProductId == i.Product.ProductID && n.IsDelete == false).FirstOrDefault();
+                    pricediscount = (product.Discount.Value * product.UnitPrice.Value) / 100; // tinh so tien giam gia
+                    total = total + pricediscount; //tong so tien cua san pham sau khi giam gia
+                }
+                // Luu thong tin order
+                order.CustomerId = selectCustomer.CustomerId;
+                order.OrderDate = DateTime.Now;
+                order.ShipName = selectCustomer.FullName;
+                order.ShipPhone = selectCustomer.Phone;
+                order.ShipAddress = selectCustomer.Address;
+                order.Freight = 20000; // phi van chuyen mat dinh khi giao hang
+                order.Note = "";// mat dinh khong ghi chu
+                order.PaymentMethodId = 1;// mat dinh thanh toan la 1
+                order.IsPaid = false;
+                order.TotalDiscount = total;
+                //order.TotalDiscount=cartvm.TotalPrice
+                var od = new MyDao(_context).AddOrder(order);
+                decimal totalPrice = 0;
+                if (od)
+                {
+                    int orderid = order.OrderId;
+
+                    foreach (var i in cart.Lines)
+                    {
+                        OrderDetails orderdetail = new OrderDetails();
+                        orderdetail.OrderId = orderid;
+                        orderdetail.ProductId = i.Product.ProductID;
+                        orderdetail.Quantity = short.Parse(i.Quantity.ToString());
+                        orderdetail.UnitPrice = decimal.Parse(i.Product.UnitPrice.ToString());
+                        orderdetail.Discount = float.Parse(i.Product.Discount.ToString());
+                        if (new MyDao(_context).AddOrderDetail(orderdetail))
+                        {
+                            totalPrice += orderdetail.Quantity * orderdetail.UnitPrice;
+                            // giam so luong san pham trong kho
+                            Products product = _context.Products.Where(n => n.ProductId == i.Product.ProductID && n.IsDelete == false).FirstOrDefault();
+                            product.UnitsInStock = short.Parse((product.UnitsInStock - orderdetail.Quantity).ToString());
+                            _context.Entry(product).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                            _context.SaveChanges();
+                        }
+                        else
+                        {
+                            return new JsonResult(new { message = "Error saving order information!" });
+                        }
+
+                    }
+                    order.TotalPrice = totalPrice + order.Freight - order.TotalDiscount;
+                    _context.Orders.Update(order);
+                    _context.SaveChanges();
+                    // deleted cart.
+                    cart.Clear();
+                    return Ok(200);
+                }
+                else
+                {
+                    return new JsonResult(new { Message = "Server Error!" });
+                }
+            }
+            else
+                return new JsonResult(new { Message = "Server Error!" });
+        }
+
+        [HttpGet("getcheckout")]
 		public IActionResult CheckOut()
 		{
 			CheckOutInfor infor = new CheckOutInfor();

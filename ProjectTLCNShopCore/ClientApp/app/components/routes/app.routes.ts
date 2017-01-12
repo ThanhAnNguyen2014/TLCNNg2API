@@ -9,6 +9,8 @@ import { AboutComponent } from '../about/about.component';
 import { CategoryComponent } from '../category/category.component';
 import { DetailComponent } from '../detail/detail.component';
 import { CartComponent } from '../cart/cart.component';
+import { CheckOutComponent } from '../checkout/checkout.component';
+import { SearchComponent } from '../search/search.component';
 
 
 import { TestComponent } from '../test/test.component';
@@ -20,10 +22,12 @@ const appRoutes: Routes = [
     { path: 'contact', component: ContactComponent },
     { path: 'category/:id', component: CategoryComponent },
     { path: 'detail/:id', component: DetailComponent },
+    { path: 'search/:searchstring', component: SearchComponent },
     { path: 'cart', component: CartComponent },
     { path: 'about', component: AboutComponent },
     { path: 'test', component: TestComponent },
     { path: 'test-http', component: TestHttpComponent },
+    { path: 'checkout', component: CheckOutComponent },
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: '**', redirectTo: 'home' }
 ];

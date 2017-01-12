@@ -1,0 +1,70 @@
+﻿<header></header>
+<!-- banner1 -->
+<div class="banner1">
+    <div class="container">
+        <ul class="w3_short">
+            <li><a routerLink="/">Home</a><i>/</i></li>
+            <li>Checkout</li>
+        </ul>
+    </div>
+</div>
+<!-- //banner1 -->
+<!--mail-->
+<!-- mail -->
+<div class="mail">
+    <div class="container">
+        <h4 class="w3_sub_head">Electronic Shop</h4>
+        <h3 class="w3_head">CheckOut</h3>
+        <p class="nunc">Thanh toán nhanh gọn và chính xác</p>
+        <div class="agileinfo_mail_grids">
+            <div class="col-md-7 agileinfo_mail_grid_right">
+                <form (ngSubmit)="onSubmit()" #checkoutForm="ngForm">
+                    <!--<div *ngIf="submitted"> Yours Message send  susscess!</div>-->
+
+                    <div class="col-md-6 wthree_contact_left_grid">
+                        <input type="text" name="name" placeholder="Họ và tên" required="" [(ngModel)]="model.name">
+                        <input type="email" name="email" placeholder="Email" required="required" [(ngModel)]="model.email">
+                    </div>
+                    <div class="col-md-6 wthree_contact_left_grid">
+                        <input type="text" name="phone" placeholder="Số điện thoại" required="" [(ngModel)]="model.phone">
+                        <input type="text" name="address" placeholder="Địa chỉ" required="" [(ngModel)]="model.address">
+                    </div>
+                    <div class="clearfix"> </div>
+                    
+                    <input type="submit" value="Gửi">
+                </form>
+            </div>
+            <div class="col-md-5 agileinfo_mail_grid_left">
+                <div class="table-responsive checkout-right animated wow slideInUp" data-wow-delay=".5s">
+                    <table class="timetable_sub">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Product Name</th>
+                            </tr>
+                        </thead>
+                        <tr class="rem1" *ngFor="let item of rowDataMainForm ;let addressFormIndex =index">
+                            <td class="invert-image"><a href="#"><img src="{{item.product.picture}}" class="img-responsive" /></a></td>
+                            <td class="invert">
+                                <div class="quantity">
+                                    <div class="quantity-select">
+                                        
+                                        <div class="entry value"><span>{{item.quantity}}</span></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="invert">{{item.product.productName}}</td>
+
+                        </tr>
+
+                    </table>
+                    <br />
+                    <p>Total:  {{cart1?.totalPrice }}</p>
+                    </div>
+                </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<footer></footer>

@@ -63,18 +63,19 @@
 
         </div>
         <div class="clearfix"> </div>
+        <div class="container-fluid">
+            <div class="bootstrap-tab animated wow slideInUp animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInUp;">
+                <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                    <ul id="myTab" class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Mô tả</a></li>
 
-        <div class="bootstrap-tab animated wow slideInUp animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInUp;">
-            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-                <ul id="myTab" class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Mô tả</a></li>
-                    
-                </ul>
-                <div id="myTabContent" class="tab-content">
-                    <div role="tabpanel" class="tab-pane fade in active bootstrap-tab-text" id="home" aria-labelledby="home-tab">
-                        <h5>Thông tin sản phẩm</h5>
-                        <p innerHTML="{{ prodetail?.note }}">
-                        </p>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active bootstrap-tab-text" id="home" aria-labelledby="home-tab">
+                            <h5>Thông tin sản phẩm</h5>
+                            <p innerHTML="{{ prodetail?.note }}">
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

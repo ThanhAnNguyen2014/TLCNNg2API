@@ -72,5 +72,23 @@ namespace ProjectTLCNShopCore.Controllers
             return new JsonResult(new { productID = "-9999" });
         }
 
+        // tìm  kiếm sản phẩm theo tên
+        [HttpGet("keysearch/key={searchString}")]
+        public IActionResult SearchKey(string searchString)
+        {
+            var result = from m in _context.Products select m;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                result = result.Where(s => s.ProductName.Contains(searchString));
+                if(result.Count()==0)
+                {
+                    return new JsonResult(new { productID = "-9999" });
+                }
+               
+            }
+
+            return new JsonResult(_mapper.Map<List<ProductModel>>(result));
+        }
+
     }
 }

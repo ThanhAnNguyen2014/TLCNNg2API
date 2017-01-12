@@ -45,7 +45,7 @@
                             </div>
                         </td>
                         <td class="invert">{{item.product.productName}}</td>
-                        <td class="invert">{{item.price}} VNĐ</td>
+                        <td class="invert">{{item.price }}</td>
                     
                 </tr>
               
@@ -57,16 +57,16 @@
 
             <div class="checkout-right-basket animated wow slideInRight" data-wow-delay=".5s">
                 <a  (click)="goBack()"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Back To Shopping</a>
-                <a routerLink="/category"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>Check Out</a>
+                <a routerLink="/checkout"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>Check Out</a>
             </div>
             <div class="checkout-left-basket animated wow slideInLeft" data-wow-delay=".5s">
                 <h4>Shopping basket</h4>
                 <ul *ngFor="let item1 of rowDataMainForm ;let addressFormIndex =index">
-                    <li>{{item1.product.productName}} <i>-</i> <span>{{item1.product.Price}}</span></li>
+                    <li>{{item1.product.productName}} </li>
                     
                 </ul>
                 <ul> 
-                    <li >Total <i>-</i> <span>{{cart1?.totalPrice }}</span></li>
+                    <!--<li >Total <i>-</i> <span>{{cart1?.totalPrice }}</span></li>-->
                 </ul>
             </div>
             <div class="clearfix"> </div>

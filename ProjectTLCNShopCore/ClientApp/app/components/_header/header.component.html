@@ -25,6 +25,7 @@
                 <li><a routerLink="/contact">Contact</a></li>
                 <li><a routerLink="/about">About</a></li>
                 
+                
             </ul>
 
 
@@ -32,6 +33,16 @@
 
 
                 <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <!--//{{diagnostic}}-->
+                        <form  #searchForm="ngForm" class="search-form">
+                            <div class="form-group has-feedback" >
+                                <label for="search" class="sr-only">Search</label>
+                                <input  (keyup.enter) = "onSearch(search.value)"   #search type="text" class="form-control" placeholder="Search"  >
+                                <span  (click)='onSearch(search.value)' class="glyphicon glyphicon-search form-control-feedback"></span>
+                            </div>
+                        </form>
+                    </li>
                     <li><a routerLink="/cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
                     <li><a routerLink="/profile" *ngIf="auth.authenticated()">Profile</a></li>
                     <li><a (click)="auth.login()" *ngIf="!auth.authenticated()">Login</a></li>

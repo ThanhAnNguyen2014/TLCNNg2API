@@ -1,32 +1,32 @@
-﻿<header ></header>
+﻿<header></header>
 <!-- banner1 -->
 <div class="banner1">
     <div class="container">
         <ul class="w3_short">
             <li><a routerLink="/">Home</a><i>/</i></li>
-            <li>Electronics</li>
+            <li>Search</li>
         </ul>
     </div>
 </div>
 <!-- //banner1 -->
 <!-- Electronics -->
-<div class="electronics" >
+<div class="electronics">
     <div class="container">
-  
+
         <div class="clearfix"></div>
         <div class="ele-bottom-grid">
-            <h3><span>Latest </span>Collections</h3>
+            <h3><span></span>Tìm kiếm sản phẩm</h3>
             <p>Đa dạng về mẫu mà , chất lượng luôn được đảm bảo</p>
-            
-            
+
+
             <div *ngIf="pro.productID!=-9999">
-                
+
 
                 <div class="col-md-3 product-men" *ngFor="let pro1 of pro">
                     <div class="men-pro-item simpleCart_shelfItem">
                         <div class="men-thumb-item">
-                          
-                          
+
+
                             <img src="{{pro1.picture | explode}}" alt="" class="pro-image-front">
                             <img src="{{pro1.picture | explode}}" alt="" class="pro-image-back">
                             <div class="men-cart-pro">
@@ -42,7 +42,7 @@
                             <div class="info-product-price">
                                 <span class="item_price">{{pro1.unitPrice}} VNĐ</span>
                             </div>
-                            <a   class="item_add single-item hvr-outline-out button2" (click)="addCart(pro1.productID)" [routerLink]="['/cart']">Add to cart</a>
+                            <a class="item_add single-item hvr-outline-out button2" (click)="addCart(pro1.productID)" [routerLink]="['/cart']">Add to cart</a>
                         </div>
                     </div>
                 </div>
@@ -52,12 +52,12 @@
 
             <div *ngIf="pro.productID==-9999">
                 <div class="col-md-3 product-men">
-                        <div class="men-thumb-item">
-                          <h4>Không tìm thấy sản phẩm</h4> 
-                            <br />
+                    <div class="men-thumb-item">
+                        <h4>Không tìm thấy sản phẩm</h4>
+                        <br />
+                    </div>
                 </div>
             </div>
-          </div>
             <div class="clearfix"></div>
         </div>
     </div>
